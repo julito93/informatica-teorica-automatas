@@ -58,6 +58,68 @@ public class Equivalencia
 		}		
 	}
 	
+	public Automata IsEquivalente(Automata automata1, Automata automata2)
+	{
+		ArrayList<Estado> estados1 = automata1.getEstados();
+		ArrayList<Estado> estados2 = automata2.getEstados();
+
+		if(estados1.size() == estados2.size())
+		{
+			Automata automata = new Automata();
+			estados1.addAll(estados2);
+			automata.setEstados(estados1);
+
+			HashMap<Integer, ArrayList<ArrayList<Estado>>> iter = iteracciones(automata);		
+			ArrayList<ArrayList<Estado>> valor = iter.get(iter.size()-1);
+			for (int i = 0; i < valor.size(); i++) 
+			{
+				ArrayList<Estado> array = valor.get(i);
+				if(array.size() == 2)
+				{
+					Estado e1 = array.get(0);
+					Estado e2 = array.get(1);
+
+					if(!(automata.getEstados().contains(e1) && automata2.getEstados().contains(e2)) || (automata.getEstados().contains(e2) && automata2.getEstados().contains(e1)))
+					{
+						return null;
+					}
+					else
+					{
+						if(e1.equals(automata1.getEstados().get(0)))
+						{
+							if(!e2.equals(automata2.getEstados().get(0)))
+								return null;
+						}
+						if(e2.equals(automata2.getEstados().get(0)))
+						{
+							if(!e1.equals(automata1.getEstados().get(0)))
+								return null;
+						}
+
+						if(e1.equals(automata2.getEstados().get(0)))
+						{
+							if(!e2.equals(automata1.getEstados().get(0)))
+								return null;
+						}
+						if(e2.equals(automata1.getEstados().get(0)))
+						{
+							if(!e1.equals(automata2.getEstados().get(0)))
+								return null;
+						}
+
+					}
+					
+				}
+				else
+				{
+					return null;
+				}
+			}
+			return automata;
+		}
+		return null;
+	}
+	
 	public Automata conexoYreducido(Automata automata)
 	{
 		HashMap<Integer, ArrayList<ArrayList<Estado>>> hash = iteracciones(automata);
