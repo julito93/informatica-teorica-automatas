@@ -97,21 +97,6 @@ public class PanelMatriz extends JPanel implements ChangeListener{
 		JButton btnNewButton = new JButton("Empezar");
 		panel.add(btnNewButton);
 		
-		//matriz del automata 2
-//		
-//		JPanel bloqueMatriz2 = new JPanel();
-//		bloqueMatriz2.setBorder(new TitledBorder(null, "Tabla de Estados del automata 1", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-//		add(bloqueMatriz2, BorderLayout.SOUTH);
-//		bloqueMatriz2.setLayout(new BorderLayout(0, 0));
-//		
-//		JScrollPane scrollMatriz2 = new JScrollPane();
-//		bloqueMatriz2.add(scrollMatriz2, BorderLayout.CENTER);
-//		
-//		tablaEstados2 = new JTable();
-//		Object[][] data2 = new Object[10][3];
-//		tablaEstados2.setModel(new DefaultTableModel(data2,new String[] {"Estado", "0", "1"}));
-//		scrollMatriz2.setViewportView(tablaEstados2);
-		
 	}
 		@Override
 		public void stateChanged(ChangeEvent e) {
@@ -123,11 +108,24 @@ public class PanelMatriz extends JPanel implements ChangeListener{
 						"Estado", "0", "1","salida"
 					}
 				));
+				
+				data = new Object[10][4];
+				tablaEstados2.setModel(new DefaultTableModel(data, new String[] {
+						"Estado", "0", "1","salida"
+					}
+				));
+				
 				}
 			else
 			{
 				Object[][] data = new Object[10][3];
 				tablaEstados1.setModel(new DefaultTableModel(data, new String[] {
+						"Estado", "0", "1"
+					}
+				));
+				
+				data = new Object[10][3];
+				tablaEstados2.setModel(new DefaultTableModel(data, new String[] {
 						"Estado", "0", "1"
 					}
 				));
