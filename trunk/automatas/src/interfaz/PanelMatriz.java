@@ -24,6 +24,7 @@ import com.jgoodies.forms.layout.RowSpec;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.UIManager;
 
 public class PanelMatriz extends JPanel implements ChangeListener{
 	
@@ -47,7 +48,7 @@ public class PanelMatriz extends JPanel implements ChangeListener{
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelTipo = new JPanel();
-		panelTipo.setBorder(new TitledBorder(null, "Escoja si es un Automata de Miley o de Moore", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelTipo.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Escoja si es un Automata de Mealy \u00F3 de Moore", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		add(panelTipo, BorderLayout.NORTH);
 		
 		rDBReconocedor = new JRadioButton("Reconocedor");
