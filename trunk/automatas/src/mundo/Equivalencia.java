@@ -352,6 +352,125 @@ public class Equivalencia
 		return retorno;
 	}
 
+	/**
+	 * retorna una cadena diferenciadora entre dos estados de un automata dado
+	 * @param M automata del que se busca la cadena diferenciadora - !=null
+	 * @param E1 Estado que se busca diferenciar - !=null
+	 * @param E2 Estado que se busca diferenciar - !=null
+	 * @return Si E1 y E2 son equivalentes, retorna una cadena vacia.
+	 */
+	public String cadenaDiferenciadora(Automata M, Estado E1, Estado E2)
+	{
+		String cadena ="";
+		HashMap<Integer,ArrayList<ArrayList<Estado>>> particiones =iteracciones(M);
+		int indice=particiones.size()-2;
+		ArrayList<ArrayList<Estado>> pi = particiones.get(indice);
+		boolean equivalentes = false;
+		for (int i=0; i< pi.size() && !equivalentes;i++) {
+			ArrayList<Estado> iEquivalentes = pi.get(i);
+			if(iEquivalentes.contains(E1)&& iEquivalentes.contains(E2))
+				equivalentes=true;
+		}
+		if(!equivalentes)
+			cadena = cadenaDiferenciadoraRecursivo(particiones,E1,E2,cadena,indice);
+		return cadena;
+	}
+	private String cadenaDiferenciadoraRecursivo(HashMap<Integer,ArrayList<ArrayList<Estado>>> particiones,
+			Estado e1, Estado e2, String cadena,int longitud) {
+		// TODO Auto-generated method stub
+		if(longitud>0)
+		{
+			ArrayList<ArrayList<Estado>> Pi = particiones.get(longitud-1);
+			String idSucesor1A = e1.getTransicionA().getEstadoLlegada();
+			String idSucesor2A = e2.getTransicionA().getEstadoLlegada();
+			Estado sucesor1 = new Estado(idSucesor1A, null, null);
+			Estado sucesor2 = new Estado(idSucesor2A, null, null);
+			boolean sucesoresIequivalentes=false;
+			for (int i = 0; i < Pi.size() && !sucesoresIequivalentes; i++) {
+				sucesoresIequivalentes = Pi.get(i).contains(sucesor1)&&Pi.get(i).contains(sucesor2);
+			}
+			if(!sucesoresIequivalentes)
+			{
+				boolean encontro=false;
+				for (int i = 0; i < Pi.size()&& !encontro;i++)
+				{
+					ArrayList<Estado> equivalentes= Pi.get(i);
+					for (int j = 0; j < equivalentes.size(); j++) {
+						if(equivalentes.get(j).equals(sucesor1))
+						{
+							sucesor1=equivalentes.get(j);
+							encontro =true;
+							break;
+						}
+					}
+				}
+				encontro=false;
+				for (int i = 0; i < Pi.size()&& !encontro;i++)
+				{
+					ArrayList<Estado> equivalentes= Pi.get(i);
+					for (int j = 0; j < equivalentes.size(); j++) {
+						if(equivalentes.get(j).equals(sucesor2))
+						{
+							sucesor2=equivalentes.get(j);
+							encontro =true;
+							break;
+						}
+					}
+				} 
+				cadena+=e1.getTransicionA().getEntrada();
+				return cadenaDiferenciadoraRecursivo(particiones, sucesor1, sucesor2, cadena, --longitud);
+			}
+			else
+			{
+				cadena+=e1.getTransicionB().getEntrada();
+				String idSucesor1B = e1.getTransicionB().getEstadoLlegada();
+				String idSucesor2B = e2.getTransicionB().getEstadoLlegada();
+				sucesor1 = new Estado(idSucesor1B, null, null);
+				sucesor2 = new Estado(idSucesor2B, null, null);
+				boolean encontro=false;
+				for (int i = 0; i < Pi.size()&& !encontro;i++)
+				{
+					ArrayList<Estado> equivalentes= Pi.get(i);
+					for (int j = 0; j < equivalentes.size(); j++) {
+						if(equivalentes.get(j).equals(sucesor1))
+						{
+							sucesor1=equivalentes.get(j);
+							encontro =true;
+							break;
+						}
+					}
+				}
+				encontro=false;
+				for (int i = 0; i < Pi.size()&& !encontro;i++)
+				{
+					ArrayList<Estado> equivalentes= Pi.get(i);
+					for (int j = 0; j < equivalentes.size(); j++) {
+						if(equivalentes.get(j).equals(sucesor2))
+						{
+							sucesor2=equivalentes.get(j);
+							encontro =true;
+							break;
+						}
+					}
+				} 
+				return cadenaDiferenciadoraRecursivo(particiones, sucesor1, sucesor2, cadena, --longitud);
+			}
+		}
+		else if(!reconocedor&& longitud==0)
+		{
+			if(!( e1.getTransicionA().getSalida().equals(e2.getTransicionA().getSalida())))	
+			{
+				return cadena+=e1.getTransicionA().getEntrada();	
+			}
+			else
+			{
+				return cadena+=e1.getTransicionB().getEntrada();
+			}
+		}
+		else
+			return cadena;
+	}
+	
 	public Automata getAutomata1() {
 		return automata1;
 	}
