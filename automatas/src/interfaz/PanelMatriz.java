@@ -70,7 +70,7 @@ public class PanelMatriz extends JPanel implements ChangeListener{
 		
 		tablaEstados1 = new JTable();
 		Object[][] data = new Object[10][3];
-		tablaEstados1.setModel(new DefaultTableModel(data,new String[] {"Estado", "0", "1"}));
+		tablaEstados1.setModel(new DefaultTableModel(data,new String[] {"Estado", "a", "b"}));
 		scrollMatriz.setViewportView(tablaEstados1);
 		panelTablas.add(bloqueMatriz1,BorderLayout.CENTER);
 		
@@ -83,7 +83,7 @@ public class PanelMatriz extends JPanel implements ChangeListener{
 		bloqueMatriz2.add(scrollMatriz);
 		tablaEstados2 = new JTable();
 		data = new Object[10][3];
-		tablaEstados2.setModel(new DefaultTableModel(data,new String[] {"Estado", "0", "1"}));
+		tablaEstados2.setModel(new DefaultTableModel(data,new String[] {"Estado", "a", "b"}));
 		scrollMatriz.setViewportView(tablaEstados2);
 		panelTablas.add(bloqueMatriz2,BorderLayout.WEST);
 		
@@ -106,13 +106,13 @@ public class PanelMatriz extends JPanel implements ChangeListener{
 				{
 				Object[][] data = new Object[10][4];
 				tablaEstados1.setModel(new DefaultTableModel(data, new String[] {
-						"Estado", "0", "1","salida"
+						"Estado", "a", "b","salida"
 					}
 				));
 				
 				data = new Object[10][4];
 				tablaEstados2.setModel(new DefaultTableModel(data, new String[] {
-						"Estado", "0", "1","salida"
+						"Estado", "a", "b","salida"
 					}
 				));
 				
@@ -121,13 +121,13 @@ public class PanelMatriz extends JPanel implements ChangeListener{
 			{
 				Object[][] data = new Object[10][3];
 				tablaEstados1.setModel(new DefaultTableModel(data, new String[] {
-						"Estado", "0", "1"
+						"Estado", "a", "b"
 					}
 				));
 				
 				data = new Object[10][3];
 				tablaEstados2.setModel(new DefaultTableModel(data, new String[] {
-						"Estado", "0", "1"
+						"Estado", "a", "b"
 					}
 				));
 			}
