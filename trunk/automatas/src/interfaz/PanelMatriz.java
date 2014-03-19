@@ -15,6 +15,15 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import javax.swing.BoxLayout;
+import java.awt.CardLayout;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.factories.FormFactory;
+import com.jgoodies.forms.layout.RowSpec;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class PanelMatriz extends JPanel implements ChangeListener{
 	
@@ -44,14 +53,16 @@ public class PanelMatriz extends JPanel implements ChangeListener{
 		rDBReconocedor = new JRadioButton("Reconocedor");
 		rDBReconocedor.addChangeListener(this);
 		panelTipo.setLayout(new BorderLayout(0, 0));
-		
 		panelTipo.add(rDBReconocedor);
+		
+		JPanel panelTablas = new JPanel();
+		panelTablas.setLayout(new BorderLayout(0,0));
+		
 		
 		// matriz del automata 1
 		JPanel bloqueMatriz1 = new JPanel();
 		bloqueMatriz1.setBorder(new TitledBorder(null, "Tabla de Estados del automata 1", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		add(bloqueMatriz1, BorderLayout.CENTER);
-		bloqueMatriz1.setLayout(new BorderLayout(0, 0));
+		bloqueMatriz1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JScrollPane scrollMatriz = new JScrollPane();
 		bloqueMatriz1.add(scrollMatriz);
@@ -60,6 +71,23 @@ public class PanelMatriz extends JPanel implements ChangeListener{
 		Object[][] data = new Object[10][3];
 		tablaEstados1.setModel(new DefaultTableModel(data,new String[] {"Estado", "0", "1"}));
 		scrollMatriz.setViewportView(tablaEstados1);
+		panelTablas.add(bloqueMatriz1,BorderLayout.CENTER);
+		
+		//matriz del automata 2
+		
+		JPanel bloqueMatriz2 = new JPanel();
+		bloqueMatriz2.setBorder(new TitledBorder(null, "Tabla de Estados del automata 2", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		bloqueMatriz2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		scrollMatriz=new JScrollPane();
+		bloqueMatriz2.add(scrollMatriz);
+		tablaEstados2 = new JTable();
+		data = new Object[10][3];
+		tablaEstados2.setModel(new DefaultTableModel(data,new String[] {"Estado", "0", "1"}));
+		scrollMatriz.setViewportView(tablaEstados2);
+		panelTablas.add(bloqueMatriz2,BorderLayout.WEST);
+		
+		scrollMatriz = new JScrollPane(panelTablas);
+		add(scrollMatriz, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
