@@ -50,7 +50,24 @@ public class ejecutable {
 		System.out.println("   reconocedores    ");
 		System.out.println("-------------------------------");
 		
-		String[][] matriz3 = {{"0","0","1","s"},{"A","B","A","0"},{"B","C","D","0"},{"C","E","C","0"},{"D","F","B","0"},{"E","G","E","0"},{"F","H","F","0"},{"G","I","G","0"},{"H","J","H","0"},{"I","A","K","1"},{"J","K","J","0"},{"K","A","K","1"}};
+		String[][] matriz3 = {
+				{"0","0","1","s"},
+				{"A","B","A","0"},
+				{"B","C","D","0"},
+				{"C","E","C","0"},
+				{"D","F","B","0"},
+				{"E","G","E","0"},
+				{"F","H","F","0"},
+				{"G","I","G","0"},
+				{"H","J","H","0"},
+				{"I","A","K","1"},
+				{"J","K","J","0"},
+				{"K","A","K","1"},
+				{"L","M","L","0"},
+				{"M","L","M","0"},
+				{"N","O","N","1"},
+				{"O","N","O","1"}
+				};
 		for (int i = 0; i < matriz3.length; i++) {
 			String cadena = "";
 			for (int j = 0; j < matriz3[i].length; j++) {
@@ -92,6 +109,12 @@ public class ejecutable {
 		
 		String diferenciadora = eq.cadenaDiferenciadora(eq.getAutomata1(), e1, e2);
 		System.out.println(diferenciadora);
+		
+		Automata reducido = eq.conexoYreducido(eq.getAutomata1());
+		System.out.println("recorrido en profundidad");
+		System.out.println(eq.recoridoProfundidad(reducido));
+		System.out.println("Conexo del reducido");
+		System.out.println(eq.conexo(reducido).getEstados());
 	}
 
 }

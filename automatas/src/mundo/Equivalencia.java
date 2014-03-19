@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-
+import java.util.Stack;
 public class Equivalencia
 {
 	private Automata automata1;
@@ -61,7 +61,7 @@ public class Equivalencia
 	public Automata conexoYreducido(Automata automata)
 	{
 		HashMap<Integer, ArrayList<ArrayList<Estado>>> hash = iteracciones(automata);
-		return Automatareducido(hash.get(hash.size()-1), automata);
+		return conexo(Automatareducido(hash.get(hash.size()-1), automata));
 		
 	}
 
@@ -470,7 +470,60 @@ public class Equivalencia
 		else
 			return cadena;
 	}
+	/**
+	 * retorna la parte conexa de un automata
+	 * @param automata
+	 * @return
+	 */
+	public Automata conexo(Automata automata)
+	{
+		ArrayList<Estado> estados = automata.getEstados();
+		ArrayList<Estado> recorrido = recoridoProfundidad(automata);
+		
+		for(int i=0; i<estados.size();i++)
+		{
+			Estado estado = estados.get(i);
+			if(!recorrido.contains(estado))
+				estados.remove(estado);
+		}
+		return automata;
+	}
 	
+	/**
+	 * retorna el recorrido en profundidad desde el estado inicial del automata
+	 * @param automata maquina de la que se busca el recorrido - !=null
+	 * @return arreglo con los estados del automata en recorrido en profundidad
+	 */
+	public ArrayList<Estado> recoridoProfundidad(Automata automata)
+	{
+		ArrayList<Estado> estados = automata.getEstados();
+		ArrayList<Estado> visitados = new ArrayList<Estado>();
+		Stack<Estado> pila = new Stack<Estado>();
+		pila.push(estados.get(0));
+		
+		while(!pila.empty())
+		{
+			Estado actual =pila.pop();
+			
+			if(!visitados.contains(actual))
+			{
+				visitados.add(actual);
+				if(actual.getTransicionA()!=null)
+				{
+					Estado sucesorA= automata.buscarEstado(actual.getTransicionA().getEstadoLlegada());
+					if(!visitados.contains(sucesorA))
+						pila.push(sucesorA);
+				}
+				if(actual.getTransicionB()!=null)
+				{
+				Estado sucesorB= automata.buscarEstado(actual.getTransicionB().getEstadoLlegada());
+				if(!visitados.contains(sucesorB))
+				pila.push(sucesorB);
+				}
+			}
+		}
+		return visitados;
+	}
 	public Automata getAutomata1() {
 		return automata1;
 	}
