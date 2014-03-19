@@ -41,6 +41,7 @@ public class Estado
 	
 	public String toString()
 	{
-		return id +  "   " + transicionA + "     " + transicionB;
+//		return id +  "   " + transicionA + "     " + transicionB;
+		return id ;
 	}
 }
