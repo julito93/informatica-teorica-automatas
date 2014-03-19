@@ -57,7 +57,25 @@ public class Equivalencia
 			automata2.addEstado( matriz2[i][0], a, b );
 		}		
 	}
-	
+
+	public boolean algoritmoDeEquivalencia (Automata automata1, Automata automata2)
+	{
+		Automata aut1 = conexoYreducido(automata1);
+		System.out.println(aut1.getEstados());
+		Automata aut2 = conexoYreducido(automata2);
+		System.out.println(aut2.getEstados());
+
+		if(aut1.getEstados().size() == aut2.getEstados().size())
+		{
+			if(IsEquivalente(aut1, aut2) == null)
+				return false;
+			else
+				return true;
+		}
+		else
+			return false;
+	}
+
 	public Automata IsEquivalente(Automata automata1, Automata automata2)
 	{
 		ArrayList<Estado> estados1 = automata1.getEstados();
@@ -108,7 +126,7 @@ public class Equivalencia
 						}
 
 					}
-					
+
 				}
 				else
 				{
@@ -119,17 +137,17 @@ public class Equivalencia
 		}
 		return null;
 	}
-	
+
 	public Automata conexoYreducido(Automata automata)
 	{
 		HashMap<Integer, ArrayList<ArrayList<Estado>>> hash = iteracciones(automata);
 		return conexo(Automatareducido(hash.get(hash.size()-1), automata));
-		
+
 	}
 
 	public Automata Automatareducido( ArrayList<ArrayList<Estado>> p, Automata automata)
 	{
-		
+
 		HashMap<String, String> estadosMinimos = new HashMap<String, String>();
 		ArrayList<Estado> estadosMinimosArray = new ArrayList<Estado>();
 		for (int i = 0; i < p.size(); i++)
@@ -143,7 +161,7 @@ public class Equivalencia
 			}	
 			estadosMinimos.put(cabeza.getId(), estadosEliminados);
 			estadosMinimosArray.add(cabeza);
-			
+
 		}
 		Iterator iterator = estadosMinimos.entrySet().iterator();
 		while(iterator.hasNext())
@@ -156,7 +174,7 @@ public class Equivalencia
 				Estado actual = estadosMinimosArray.get(i);
 				Estado estadoAlcanzableA2 = automata.buscarEstado( actual.getTransicionA().getEstadoLlegada());
 				Estado estadoAlcanzableB2 = automata.buscarEstado( actual.getTransicionB().getEstadoLlegada());
-				
+
 				if(valor.contains(estadoAlcanzableA2.getId()))
 				{	
 					actual.getTransicionA().setEstadoLlegada(key);
@@ -170,7 +188,7 @@ public class Equivalencia
 		Automata a = new Automata();
 		a.setEstados(estadosMinimosArray);
 		return a;
-	
+
 	}
 
 	public ArrayList< ArrayList< Estado > > conjuntoInicial(Automata automata)
@@ -272,7 +290,7 @@ public class Equivalencia
 					separados = ret[1];
 					intermedio.add(ret[0]);
 				}
-				
+
 				retorno = verificarMismoGrupo(conjunto, automata, pi, p.size());
 				ArrayList<Estado> separadosGrupo = new ArrayList<Estado>();
 				separadosGrupo = retorno[1];				
@@ -280,20 +298,20 @@ public class Equivalencia
 				{
 					ArrayList<Estado>[] ret = verificarSucesoresInmediatos(automata, separadosGrupo);
 					separadosGrupo = ret[1];
-					
+
 					intermedio.remove(intermedio.size()-1);
 					intermedio.add(retorno[0]);
 					intermedio.add(retorno[1]);
 				}
 
 			}
-			
+
 			pi=intermedio;
 			pActual = p.get(num-1);
 			p.put(num, pi);
 			num++;
 		}
-		
+
 		return p;
 	}
 
@@ -355,7 +373,7 @@ public class Equivalencia
 					{
 						encontro=true;
 					}
-					
+
 				}
 
 				if(!mismoGrupo)
@@ -541,7 +559,7 @@ public class Equivalencia
 	{
 		ArrayList<Estado> estados = automata.getEstados();
 		ArrayList<Estado> recorrido = recoridoProfundidad(automata);
-		
+
 		for(int i=0; i<estados.size();i++)
 		{
 			Estado estado = estados.get(i);
@@ -550,7 +568,7 @@ public class Equivalencia
 		}
 		return automata;
 	}
-	
+
 	/**
 	 * retorna el recorrido en profundidad desde el estado inicial del automata
 	 * @param automata maquina de la que se busca el recorrido - !=null
@@ -562,11 +580,11 @@ public class Equivalencia
 		ArrayList<Estado> visitados = new ArrayList<Estado>();
 		Stack<Estado> pila = new Stack<Estado>();
 		pila.push(estados.get(0));
-		
+
 		while(!pila.empty())
 		{
 			Estado actual =pila.pop();
-			
+
 			if(!visitados.contains(actual))
 			{
 				visitados.add(actual);
@@ -578,9 +596,9 @@ public class Equivalencia
 				}
 				if(actual.getTransicionB()!=null)
 				{
-				Estado sucesorB= automata.buscarEstado(actual.getTransicionB().getEstadoLlegada());
-				if(!visitados.contains(sucesorB))
-				pila.push(sucesorB);
+					Estado sucesorB= automata.buscarEstado(actual.getTransicionB().getEstadoLlegada());
+					if(!visitados.contains(sucesorB))
+						pila.push(sucesorB);
 				}
 			}
 		}

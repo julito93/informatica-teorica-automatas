@@ -62,11 +62,11 @@ public class ejecutable {
 				{"H","J","H","0"},
 				{"I","A","K","1"},
 				{"J","K","J","0"},
-				{"K","A","K","1"},
-				{"L","M","L","0"},
-				{"M","L","M","0"},
-				{"N","O","N","1"},
-				{"O","N","O","1"}
+				{"K","A","K","1"}
+//				{"L","M","L","0"},
+//				{"M","L","M","0"},
+//				{"N","O","N","1"},
+//				{"O","N","O","1"}
 				};
 		for (int i = 0; i < matriz3.length; i++) {
 			String cadena = "";
@@ -75,46 +75,68 @@ public class ejecutable {
 			}
 			System.out.println(cadena);
 		}
-		String[][] matriz4 = matriz3;
+		String[][] matriz4 = {
+				{"0","0","1","s"},
+				{"L","M","L","0"},
+				{"M","N","M","0"},
+				{"N","O","N","0"},
+				{"O","P","O","0"},
+				{"P","Q","P","0"},
+				{"Q","M","Q","1"}
+		};
+		for (int i = 0; i < matriz4.length; i++) {
+			String cadena = "";
+			for (int j = 0; j < matriz4[i].length; j++) {
+				cadena += matriz4[i][j]+"  ";
+			}
+		}
 		eq.inicializarReonocedor(matriz3, matriz4);
+		System.out.println(eq.algoritmoDeEquivalencia(eq.getAutomata1(), eq.getAutomata2()));
 		
-		ArrayList<Estado> estados2 = eq.getAutomata1().getEstados();
-		for (int i = 0; i < estados2.size(); i++) 
-		{
-			Estado es = estados2.get(i);
-			System.out.println(es.getId() + "  " + es.getTransicionA() +"    "+ es.getTransicionB());
-		}
-		System.out.println("-------------------------------");
-		ArrayList<Estado> estados3 = eq.getAutomata2().getEstados();
-		for (int i = 0; i < estados3.size(); i++) 
-		{
-			Estado es = estados3.get(i);
-			System.out.println(es.getId() + "  " + es.getTransicionA() +"    "+ es.getTransicionB());
-		}
 		
-		System.out.println(eq.conexoYreducido(eq.getAutomata1()).getEstados());
-		System.out.println("-----------------------");
-		System.out.println("cadena diferenciadora");
-		ArrayList<Estado> estados = eq.getAutomata1().getEstados();
-		Estado e1=null;
-		Estado e2=null;
-		for (Estado estado : estados) {
-			if(estado.getId().equals("A"))
-				e1=estado;
-			if(estado.getId().equals("B"))
-				e2=estado;
-			if(e1!=null && e2!=null)
-				break;
-		}
 		
-		String diferenciadora = eq.cadenaDiferenciadora(eq.getAutomata1(), e1, e2);
-		System.out.println(diferenciadora);
 		
-		Automata reducido = eq.conexoYreducido(eq.getAutomata1());
-		System.out.println("recorrido en profundidad");
-		System.out.println(eq.recoridoProfundidad(reducido));
-		System.out.println("Conexo del reducido");
-		System.out.println(eq.conexo(reducido).getEstados());
+		
+		
+		
+		
+//		ArrayList<Estado> estados2 = eq.getAutomata1().getEstados();
+//		for (int i = 0; i < estados2.size(); i++) 
+//		{
+//			Estado es = estados2.get(i);
+//			System.out.println(es.getId() + "  " + es.getTransicionA() +"    "+ es.getTransicionB());
+//		}
+//		System.out.println("-------------------------------");
+//		ArrayList<Estado> estados3 = eq.getAutomata2().getEstados();
+//		for (int i = 0; i < estados3.size(); i++) 
+//		{
+//			Estado es = estados3.get(i);
+//			System.out.println(es.getId() + "  " + es.getTransicionA() +"    "+ es.getTransicionB());
+//		}
+//		
+//		System.out.println(eq.conexoYreducido(eq.getAutomata1()).getEstados());
+//		System.out.println("-----------------------");
+//		System.out.println("cadena diferenciadora");
+//		ArrayList<Estado> estados = eq.getAutomata1().getEstados();
+//		Estado e1=null;
+//		Estado e2=null;
+//		for (Estado estado : estados) {
+//			if(estado.getId().equals("A"))
+//				e1=estado;
+//			if(estado.getId().equals("B"))
+//				e2=estado;
+//			if(e1!=null && e2!=null)
+//				break;
+//		}
+//		
+//		String diferenciadora = eq.cadenaDiferenciadora(eq.getAutomata1(), e1, e2);
+//		System.out.println(diferenciadora);
+//		
+//		Automata reducido = eq.conexoYreducido(eq.getAutomata1());
+//		System.out.println("recorrido en profundidad");
+//		System.out.println(eq.recoridoProfundidad(reducido));
+//		System.out.println("Conexo del reducido");
+//		System.out.println(eq.conexo(reducido).getEstados());
 	}
 
 }
