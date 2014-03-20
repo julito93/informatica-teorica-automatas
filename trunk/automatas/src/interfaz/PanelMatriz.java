@@ -81,17 +81,7 @@ public class PanelMatriz extends JPanel implements ActionListener{
 
 		tablaEstados1 = new JTable();
 		Object[][] data = new Object[10][3];
-		tablaEstados1.setModel(new DefaultTableModel(/*new Object[][] {
-				{"0","0","1"},
-				{"A","B,0","C,0"},
-				{"B","C,1","D,1"},
-				{"C","D,0","E,0"},
-				{"D","C,1","B,1"},
-				{"E","F,1","E,1"},
-				{"F","G,0","C,0"},
-				{"G","F,1","G,1"},
-				{"H","J,1","B,0"},
-				{"J","H,1","D,0"}}*/data,new String[] {"Estado", "a", "b"}));
+		tablaEstados1.setModel(new DefaultTableModel(data,new String[] {"Estado", "a", "b"}));
 		scrollMatriz.setViewportView(tablaEstados1);
 		panelTablas.add(bloqueMatriz1,BorderLayout.CENTER);
 
@@ -104,17 +94,7 @@ public class PanelMatriz extends JPanel implements ActionListener{
 		bloqueMatriz2.add(scrollMatriz_1);
 		tablaEstados2 = new JTable();
 		data = new Object[10][3];
-		tablaEstados2.setModel(new DefaultTableModel(/*new Object[][] {
-				{"0","0","1"},
-				{"A","B,0","C,0"},
-				{"B","C,1","D,1"},
-				{"C","D,0","E,0"},
-				{"D","C,1","B,1"},
-				{"E","F,1","E,1"},
-				{"F","G,0","C,0"},
-				{"G","F,1","G,1"},
-				{"H","J,1","B,0"},
-				{"J","H,1","D,0"}}*/data,
+		tablaEstados2.setModel(new DefaultTableModel(data,
 				new String[] {
 				"Estado", "a", "b"
 		}
