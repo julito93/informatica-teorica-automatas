@@ -167,8 +167,11 @@ public class InterfazWB extends JFrame {
 		if(equivalencia.getAutomata1().getEstados().isEmpty())
 		{
 			equivalencia.getAutomata1().getEstados().clear();
-			equivalencia.guardarReconocedor1(automata1);
-			JOptionPane.showMessageDialog(this, "Guardado");
+			
+				equivalencia.guardarReconocedor1(automata1);
+				JOptionPane.showMessageDialog(this, "Guardado");
+			
+			
 		}
 		else
 		{
@@ -178,77 +181,88 @@ public class InterfazWB extends JFrame {
 			if(respuesta==JOptionPane.YES_OPTION)
 			{
 				equivalencia.getAutomata1().getEstados().clear();
+
 				equivalencia.guardarReconocedor1(automata1);
 				JOptionPane.showMessageDialog(this, "Guardado");
 			}
-
 		}
+
 	}
-	public void actualizarMeley1(String[][] automata1) {
-		// TODO Auto-generated method stub
-		if(equivalencia.getAutomata1().getEstados().isEmpty())
+
+
+public void actualizarMeley1(String[][] automata1) {
+	// TODO Auto-generated method stub
+	if(equivalencia.getAutomata1().getEstados().isEmpty())
+	{
+		equivalencia.getAutomata1().getEstados().clear();
+
+		equivalencia.guardarMealy1(automata1);
+		JOptionPane.showMessageDialog(this, "Guardado");
+
+	}
+	else{
+		int respuesta =JOptionPane.showConfirmDialog(this,
+				"esta seguro que desea sobreescribir el automata guardado", 
+				"Precaución", JOptionPane.YES_NO_OPTION);
+		if(respuesta==JOptionPane.YES_OPTION)
 		{
 			equivalencia.getAutomata1().getEstados().clear();
+
 			equivalencia.guardarMealy1(automata1);
 			JOptionPane.showMessageDialog(this, "Guardado");
-		}
-		else{
-			int respuesta =JOptionPane.showConfirmDialog(this,
-					"esta seguro que desea sobreescribir el automata guardado", 
-					"Precaución", JOptionPane.YES_NO_OPTION);
-			if(respuesta==JOptionPane.YES_OPTION)
-			{
-				equivalencia.getAutomata1().getEstados().clear();
-				equivalencia.guardarMealy1(automata1);
-				JOptionPane.showMessageDialog(this, "Guardado");
-			}
+
 		}
 	}
+}
 
-	public void actualizarReconocedor2(String[][] automata2) {
-		// TODO Auto-generated method stub
-		if(equivalencia.getAutomata2().getEstados().isEmpty())
-		{ 	
+public void actualizarReconocedor2(String[][] automata2) {
+	// TODO Auto-generated method stub
+	if(equivalencia.getAutomata2().getEstados().isEmpty())
+	{ 	
+		equivalencia.getAutomata2().getEstados().clear();
+
+		equivalencia.guardarReconocedor2(automata2);
+		JOptionPane.showMessageDialog(this, "Guardado");
+
+	}
+	else
+	{
+		int respuesta =JOptionPane.showConfirmDialog(this,
+				"esta seguro que desea sobreescribir el automata guardado", 
+				"Precaución", JOptionPane.YES_NO_OPTION);
+		if(respuesta==JOptionPane.YES_OPTION)
+		{
 			equivalencia.getAutomata2().getEstados().clear();
+
 			equivalencia.guardarReconocedor2(automata2);
 			JOptionPane.showMessageDialog(this, "Guardado");
-		}
-		else
-		{
-			int respuesta =JOptionPane.showConfirmDialog(this,
-					"esta seguro que desea sobreescribir el automata guardado", 
-					"Precaución", JOptionPane.YES_NO_OPTION);
-			if(respuesta==JOptionPane.YES_OPTION)
-			{
-				equivalencia.getAutomata2().getEstados().clear();
-				equivalencia.guardarReconocedor2(automata2);
-				JOptionPane.showMessageDialog(this, "Guardado");
-			}
+
 		}
 	}
+}
 
-	public void actualizarMeley2(String[][] automata2) {
-		// TODO Auto-generated method stub
-		if(equivalencia.getAutomata2().getEstados().isEmpty())
-		{ 	
+public void actualizarMeley2(String[][] automata2) {
+	// TODO Auto-generated method stub
+	if(equivalencia.getAutomata2().getEstados().isEmpty())
+	{ 	
+		equivalencia.getAutomata2().getEstados().clear();
+
+		equivalencia.guardarMealy2(automata2);
+		JOptionPane.showMessageDialog(this, "Guardado");
+
+	}
+	else
+	{
+		int respuesta =JOptionPane.showConfirmDialog(this,
+				"esta seguro que desea sobreescribir el automata guardado", 
+				"Precaución", JOptionPane.YES_NO_OPTION);
+		if(respuesta==JOptionPane.YES_OPTION)
+		{
 			equivalencia.getAutomata2().getEstados().clear();
+
 			equivalencia.guardarMealy2(automata2);
 			JOptionPane.showMessageDialog(this, "Guardado");
 		}
-		else
-		{
-			int respuesta =JOptionPane.showConfirmDialog(this,
-					"esta seguro que desea sobreescribir el automata guardado", 
-					"Precaución", JOptionPane.YES_NO_OPTION);
-			if(respuesta==JOptionPane.YES_OPTION)
-			{
-				equivalencia.getAutomata2().getEstados().clear();
-				equivalencia.guardarMealy2(automata2);
-				JOptionPane.showMessageDialog(this, "Guardado");
-			}
-		}
 	}
-
-
-
+}
 }

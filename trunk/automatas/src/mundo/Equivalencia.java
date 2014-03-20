@@ -57,25 +57,65 @@ public class Equivalencia
 
 	public void guardarMealy1(String[][] matriz1)
 	{
-		for ( int i = 1; i < matriz1.length; i++ )
+		for ( int i = 0; i < matriz1.length; i++ )
 		{
+			if(cadenaValida(matriz1[i][0]) && cadenaValida(matriz1[i][1])&& cadenaValida(matriz1[i][2]))
+			{
 			String[] array = matriz1[i][1].split( "," );
-			Transicion a = new Transicion( matriz1[0][1], array[1],  array[0]);
+			Transicion a = new Transicion( matriz1[i][1], array[1],  array[0]);
 			String[] array2 = matriz1[i][2].split( "," );
-			Transicion b = new Transicion( matriz1[0][2],array2[1],  array2[0]);
+			Transicion b = new Transicion( matriz1[i][2],array2[1],  array2[0]);
 			automata1.addEstado( matriz1[i][0], a, b );
+			}
+			else if(cadenaValida(matriz1[i][0])&& cadenaValida(matriz1[i][1]))
+			{
+				String[] array = matriz1[i][1].split( "," );
+				Transicion a = new Transicion( matriz1[i][1], array[1],  array[0]);
+				automata1.addEstado( matriz1[i][0], a, null );
+			}
+			else if(cadenaValida(matriz1[i][0])&& cadenaValida(matriz1[i][2]))
+			{
+				String[] array = matriz1[i][2].split( "," );
+				Transicion b = new Transicion( matriz1[i][2], array[2],  array[0]);
+				automata1.addEstado( matriz1[i][0], null, b );
+			}
+			else if(cadenaValida(matriz1[i][0]))
+			{
+				automata1.addEstado( matriz1[i][0], null, null );
+			}
 		}
 	}
 	
 	public void guardarMealy2(String[][] matriz2)
 	{
-		for ( int i = 1; i < matriz2.length; i++ )
+		for ( int i = 0; i < matriz2.length; i++ )
 		{
+			if(cadenaValida(matriz2[i][1])&& cadenaValida(matriz2[i][2]) && cadenaValida(matriz2[i][0]))
+			{
 			String[] array = matriz2[i][1].split( "," );
 			Transicion a = new Transicion( matriz2[0][1], array[1],  array[0]);
+			
 			String[] array2 = matriz2[i][2].split( "," );
-			Transicion b = new Transicion( matriz2[0][2],array2[1],  array2[0]);
+			Transicion b = new Transicion( matriz2[i][2],array2[1],  array2[0]);
 			automata2.addEstado( matriz2[i][0], a, b );
+			}
+			else if(cadenaValida(matriz2[i][1]) && cadenaValida(matriz2[i][0]))
+			{
+				String[] array = matriz2[i][1].split( "," );
+				Transicion a = new Transicion( matriz2[0][1], array[1],  array[0]);
+				automata2.addEstado( matriz2[i][0], a, null );
+			}
+			else if(cadenaValida(matriz2[i][2])&&cadenaValida(matriz2[i][0]))
+			{
+				String[] array2 = matriz2[i][2].split( "," );
+				Transicion b = new Transicion( matriz2[0][2],array2[1],  array2[0]);
+				automata2.addEstado( matriz2[i][0],null, b );
+			}
+			else if(cadenaValida(matriz2[i][0]))
+			{
+				automata2.addEstado( matriz2[i][0],null, null );
+			}
+			
 		}
 	}
 	
@@ -634,6 +674,9 @@ public class Equivalencia
 		return automata2;
 	}
 
-	
+	public boolean cadenaValida(String cadena)
+	{
+		return cadena!=null && !cadena.equals("");
+	}
 
 }
