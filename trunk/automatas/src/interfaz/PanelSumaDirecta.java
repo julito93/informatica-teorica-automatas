@@ -56,7 +56,7 @@ public class PanelSumaDirecta extends JPanel {
 		
 	}
 	
-	public void mostrarAutomatasEquivalentes()
+	public void mostrarAutomatasEquivalentes(String automata)
 	{
 	 
 	}
