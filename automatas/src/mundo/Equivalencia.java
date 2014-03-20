@@ -21,23 +21,41 @@ public class Equivalencia
 
 	public void inicializarReonocedor(String[][] matriz1, String[][] matriz2 )
 	{
+		guardarReconocedor1(matriz1);
+		guardarReconocedor2(matriz2);
+		reconocedor = true;
+	}
+
+	public void guardarReconocedor1(String[][] matriz1)
+	{
+		
 		for ( int i = 1; i < matriz1.length; i++ )
 		{
 			Transicion a = new Transicion( matriz1[0][1], matriz1[i][3],  matriz1[i][1]);
 			Transicion b = new Transicion( matriz1[0][2], matriz1[i][3],  matriz1[i][2]);
 			automata1.addEstado( matriz1[i][0], a, b );
 		}
-
+	}
+	
+	public void guardarReconocedor2(String[][] matriz2)
+	{
 		for ( int i = 1; i < matriz2.length; i++ )
 		{
 			Transicion a = new Transicion( matriz2[0][1], matriz2[i][3],  matriz2[i][1]);
 			Transicion b = new Transicion( matriz2[0][2], matriz2[i][3],  matriz2[i][2]);
 			automata2.addEstado( matriz2[i][0], a, b );
 		}
-		reconocedor = true;
+	}
+	
+	public void inicializarMealy(String[][] matriz1, String[][] matriz2 )
+	{
+		
+		guardarMealy1(matriz1);
+		guardarMealy2(matriz2);
+				
 	}
 
-	public void inicializarMealy(String[][] matriz1, String[][] matriz2 )
+	public void guardarMealy1(String[][] matriz1)
 	{
 		for ( int i = 1; i < matriz1.length; i++ )
 		{
@@ -47,7 +65,10 @@ public class Equivalencia
 			Transicion b = new Transicion( matriz1[0][2],array2[1],  array2[0]);
 			automata1.addEstado( matriz1[i][0], a, b );
 		}
-
+	}
+	
+	public void guardarMealy2(String[][] matriz2)
+	{
 		for ( int i = 1; i < matriz2.length; i++ )
 		{
 			String[] array = matriz2[i][1].split( "," );
@@ -55,9 +76,10 @@ public class Equivalencia
 			String[] array2 = matriz2[i][2].split( "," );
 			Transicion b = new Transicion( matriz2[0][2],array2[1],  array2[0]);
 			automata2.addEstado( matriz2[i][0], a, b );
-		}		
+		}
 	}
-
+	
+	
 	public boolean algoritmoDeEquivalencia (Automata automata1, Automata automata2)
 	{
 		Automata aut1 = conexoYreducido(automata1);
@@ -612,5 +634,6 @@ public class Equivalencia
 		return automata2;
 	}
 
+	
 
 }
