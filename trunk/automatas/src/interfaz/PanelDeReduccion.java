@@ -33,11 +33,11 @@ public class PanelDeReduccion extends JPanel implements ChangeListener
 
 		rDBReconocedor = new JRadioButton("Reconocedor");
 		rDBReconocedor.addChangeListener(this);
-		panelTipo.setLayout(new BorderLayout(0, 0));
+		panelTipo.setLayout(new BorderLayout());
 		panelTipo.add(rDBReconocedor);
 
 		JPanel panelTablas = new JPanel();
-		panelTablas.setLayout(new BorderLayout(0,0));
+		panelTablas.setLayout(new BorderLayout());
 
 
 		// matriz del automata 1
@@ -68,7 +68,7 @@ public class PanelDeReduccion extends JPanel implements ChangeListener
 		panelTablas.add(bloqueMatriz2,BorderLayout.WEST);
 
 		scrollMatriz = new JScrollPane(panelTablas);
-		add(scrollMatriz, BorderLayout.CENTER);
+		add(panelTablas, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
