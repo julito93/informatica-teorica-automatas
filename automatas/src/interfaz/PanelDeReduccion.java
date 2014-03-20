@@ -63,7 +63,7 @@ public class PanelDeReduccion extends JPanel implements ChangeListener
 		panelTablas.add(bloqueMatriz2,BorderLayout.WEST);
 
 		scrollMatriz = new JScrollPane(panelTablas);
-		add(panelTablas, BorderLayout.CENTER);
+		add(scrollMatriz, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));

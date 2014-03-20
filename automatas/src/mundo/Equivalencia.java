@@ -678,5 +678,6 @@ public class Equivalencia
 	{
 		return cadena!=null && !cadena.equals("");
 	}
-
+	
+	
 }
