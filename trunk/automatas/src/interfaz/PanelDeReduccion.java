@@ -9,13 +9,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 
-import mundo.Automata;
-
-
 public class PanelDeReduccion extends JPanel implements ChangeListener
 {
-	private JTable table;
-	private PanelMatriz panelMatriz;
 	private InterfazWB ventana;
 
 	private JTable tablaEstados1;
