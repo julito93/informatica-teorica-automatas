@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTabbedPane;
@@ -29,6 +30,7 @@ public class InterfazWB extends JFrame {
 			public void run() {
 				try {
 					InterfazWB frame = new InterfazWB();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,9 +43,9 @@ public class InterfazWB extends JFrame {
 	 * Create the frame.
 	 */
 	public InterfazWB() {
-		
+
 		equivalencia = new Equivalencia();
-		
+
 		setTitle("Automatas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1004, 374);
@@ -51,23 +53,23 @@ public class InterfazWB extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
-		
-		panelMatriz = new PanelMatriz((InterfazWB) null);
-		tabbedPane.addTab("New tab", null, panelMatriz, null);
-		
+
+		panelMatriz = new PanelMatriz(this);
+		tabbedPane.addTab("Tablas de estados", null, panelMatriz, null);
+
 		panelReduccion = new PanelDeReduccion(this);
 		tabbedPane.addTab("Reducci\u00F3n de automatas", null, panelReduccion, null);
-		
-		
-		
+
+
+
 		equivalencia = new Equivalencia();
 		System.out.println("-------------------------------");
 		System.out.println("   reconocedores    ");
 		System.out.println("-------------------------------");
-		
+
 		String[][] matriz3 = {
 				{"0","0","1","s"},
 				{"A","B","A","0"},
@@ -81,7 +83,7 @@ public class InterfazWB extends JFrame {
 				{"I","A","K","1"},
 				{"J","K","J","0"},
 				{"K","A","K","1"}
-				};
+		};
 
 		String[][] matriz4 = {
 				{"0","0","1","s"},
@@ -100,7 +102,7 @@ public class InterfazWB extends JFrame {
 		}
 		equivalencia.inicializarReonocedor(matriz3, matriz4);	
 	}
-	
+
 	public Object[][] automata1ReducidoMealy()
 	{
 		Automata automata = equivalencia.conexoYreducido(equivalencia.getAutomata1());
@@ -112,7 +114,7 @@ public class InterfazWB extends JFrame {
 			data[i][1]= e.getTransicionA().getEstadoLlegada()+","+e.getTransicionA().getSalida();
 			data[i][2]= e.getTransicionB().getEstadoLlegada()+","+e.getTransicionA().getSalida();
 		}
-		
+
 		return data;
 	}
 	public Object[][] automata2ReducidoMealy()
@@ -126,7 +128,7 @@ public class InterfazWB extends JFrame {
 			data[i][1]= e.getTransicionA().getEstadoLlegada()+","+e.getTransicionA().getSalida();
 			data[i][2]= e.getTransicionB().getEstadoLlegada()+","+e.getTransicionA().getSalida();
 		}
-		
+
 		return data;
 	}
 	public Object[][] automata1ReducidoMoore()
@@ -141,7 +143,7 @@ public class InterfazWB extends JFrame {
 			data[i][2]= e.getTransicionB().getEstadoLlegada();
 			data[i][3]= e.getTransicionA().getSalida();
 		}
-		
+
 		return data;
 	}
 	public Object[][] automata2ReducidoMoore()
@@ -156,8 +158,97 @@ public class InterfazWB extends JFrame {
 			data[i][2]= e.getTransicionB().getEstadoLlegada();
 			data[i][3]= e.getTransicionA().getSalida();
 		}
-		
+
 		return data;
 	}
+
+	public void actualizarReconocedor1(String[][] automata1) {
+		// TODO Auto-generated method stub
+		if(equivalencia.getAutomata1().getEstados().isEmpty())
+		{
+			equivalencia.getAutomata1().getEstados().clear();
+			equivalencia.guardarReconocedor1(automata1);
+			JOptionPane.showMessageDialog(this, "Guardado");
+		}
+		else
+		{
+			int respuesta =JOptionPane.showConfirmDialog(this,
+					"esta seguro que desea sobreescribir el automata guardado", 
+					"Precaución", JOptionPane.YES_NO_OPTION);
+			if(respuesta==JOptionPane.YES_OPTION)
+			{
+				equivalencia.getAutomata1().getEstados().clear();
+				equivalencia.guardarReconocedor1(automata1);
+				JOptionPane.showMessageDialog(this, "Guardado");
+			}
+
+		}
+	}
+	public void actualizarMeley1(String[][] automata1) {
+		// TODO Auto-generated method stub
+		if(equivalencia.getAutomata1().getEstados().isEmpty())
+		{
+			equivalencia.getAutomata1().getEstados().clear();
+			equivalencia.guardarMealy1(automata1);
+			JOptionPane.showMessageDialog(this, "Guardado");
+		}
+		else{
+			int respuesta =JOptionPane.showConfirmDialog(this,
+					"esta seguro que desea sobreescribir el automata guardado", 
+					"Precaución", JOptionPane.YES_NO_OPTION);
+			if(respuesta==JOptionPane.YES_OPTION)
+			{
+				equivalencia.getAutomata1().getEstados().clear();
+				equivalencia.guardarMealy1(automata1);
+				JOptionPane.showMessageDialog(this, "Guardado");
+			}
+		}
+	}
+
+	public void actualizarReconocedor2(String[][] automata2) {
+		// TODO Auto-generated method stub
+		if(equivalencia.getAutomata2().getEstados().isEmpty())
+		{ 	
+			equivalencia.getAutomata2().getEstados().clear();
+			equivalencia.guardarReconocedor2(automata2);
+			JOptionPane.showMessageDialog(this, "Guardado");
+		}
+		else
+		{
+			int respuesta =JOptionPane.showConfirmDialog(this,
+					"esta seguro que desea sobreescribir el automata guardado", 
+					"Precaución", JOptionPane.YES_NO_OPTION);
+			if(respuesta==JOptionPane.YES_OPTION)
+			{
+				equivalencia.getAutomata2().getEstados().clear();
+				equivalencia.guardarReconocedor2(automata2);
+				JOptionPane.showMessageDialog(this, "Guardado");
+			}
+		}
+	}
+
+	public void actualizarMeley2(String[][] automata2) {
+		// TODO Auto-generated method stub
+		if(equivalencia.getAutomata2().getEstados().isEmpty())
+		{ 	
+			equivalencia.getAutomata2().getEstados().clear();
+			equivalencia.guardarMealy2(automata2);
+			JOptionPane.showMessageDialog(this, "Guardado");
+		}
+		else
+		{
+			int respuesta =JOptionPane.showConfirmDialog(this,
+					"esta seguro que desea sobreescribir el automata guardado", 
+					"Precaución", JOptionPane.YES_NO_OPTION);
+			if(respuesta==JOptionPane.YES_OPTION)
+			{
+				equivalencia.getAutomata2().getEstados().clear();
+				equivalencia.guardarMealy2(automata2);
+				JOptionPane.showMessageDialog(this, "Guardado");
+			}
+		}
+	}
+
+
 
 }
