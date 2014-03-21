@@ -14,6 +14,9 @@ import java.awt.GridBagConstraints;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Choice;
 
 public class PanelDeReduccion extends JPanel implements ChangeListener
 {
@@ -24,16 +27,25 @@ public class PanelDeReduccion extends JPanel implements ChangeListener
 	private JTable tablaEstados2;
 
 	private JRadioButton rDBReconocedor;
-	private JTextField textField_1;
-	private JTextField textField;
+	
+	private JTextField txtEstado2;
+	
+	private JTextField txtEstado1;
+	
 	private JScrollPane scrollMatriz_1;
+	
+	private JLabel lblCadena;
+	
+	private JComboBox<String> cbAutomatas;
+	
 	public PanelDeReduccion(InterfazWB interfaz) {
 		setPreferredSize(new Dimension(448, 339));
 		setLayout(new BorderLayout());
 		ventana = interfaz;
 
 		JPanel panelTipo = new JPanel();
-		panelTipo.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Escoja si es un Automata de Mealy \u00F3 de Moore", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelTipo.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), 
+				"Escoja si es un Automata de Mealy \u00F3 de Moore", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		add(panelTipo, BorderLayout.NORTH);
 
 		rDBReconocedor = new JRadioButton("Reconocedor");
@@ -84,10 +96,18 @@ public class PanelDeReduccion extends JPanel implements ChangeListener
 		
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1, BorderLayout.WEST);
-		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panel_1.setLayout(new BorderLayout(0, 0));
 		
 		JButton btnNewButton = new JButton("Cadena Diferenciadora");
-		panel_1.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mostrarCadenaDiferenciadora(txtEstado1.getText(),txtEstado2.getText());
+			}
+		});
+		panel_1.add(btnNewButton, BorderLayout.NORTH);
+		
+		lblCadena = new JLabel("---------");
+		panel_1.add(lblCadena, BorderLayout.WEST);
 		
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2, BorderLayout.CENTER);
@@ -96,9 +116,9 @@ public class PanelDeReduccion extends JPanel implements ChangeListener
 		JPanel panel_3 = new JPanel();
 		panel_2.add(panel_3, BorderLayout.SOUTH);
 		
-		textField_1 = new JTextField();
-		panel_3.add(textField_1);
-		textField_1.setColumns(10);
+		txtEstado2 = new JTextField();
+		panel_3.add(txtEstado2);
+		txtEstado2.setColumns(10);
 		
 		JLabel lblEstado = new JLabel("Estado2");
 		panel_3.add(lblEstado);
@@ -106,20 +126,21 @@ public class PanelDeReduccion extends JPanel implements ChangeListener
 		JPanel panel_4 = new JPanel();
 		panel_2.add(panel_4, BorderLayout.NORTH);
 		
-		textField = new JTextField();
-		panel_4.add(textField);
-		textField.setColumns(10);
+		txtEstado1 = new JTextField();
+		panel_4.add(txtEstado1);
+		txtEstado1.setColumns(10);
 		
 		JLabel lblEstadoDelAutomata = new JLabel("Estado1");
 		panel_4.add(lblEstadoDelAutomata);
 		
 		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Escoja si  son del automata2", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Escoja Automata", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.add(panel_5, BorderLayout.EAST);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Automata2");
-		rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_5.add(rdbtnNewRadioButton);
+		cbAutomatas = new JComboBox<String>();
+		cbAutomatas.setModel(new DefaultComboBoxModel<String>(new String[] {"Automata1", "Automata2"}));
+		cbAutomatas.setEditable(true);
+		panel_5.add(cbAutomatas);
 
 	}
 	
@@ -156,4 +177,13 @@ public class PanelDeReduccion extends JPanel implements ChangeListener
 					));
 		}
 	}
+	
+
+	public void mostrarCadenaDiferenciadora(String Estado1, String Estado2) {
+		// TODO Auto-generated method stub
+		String automata=(String) cbAutomatas.getSelectedItem();
+		String cadena= ventana.cadenaDiferenciadora(Estado1,Estado2,automata);
+		lblCadena.setText(cadena.equals("")?"Los estados Son equivalentes":cadena);
+	}
+	
 }

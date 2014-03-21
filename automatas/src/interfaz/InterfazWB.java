@@ -236,5 +236,21 @@ public class InterfazWB extends JFrame {
 			}
 		}
 	}
+
+	public String cadenaDiferenciadora(String estado1, String estado2,
+			String automata) {
+		// TODO Auto-generated method stub
+		String cadena="";	
+		Automata seleccionado = automata.equals("Automata2")? equivalencia.getAutomata2():equivalencia.getAutomata1();
+		if(seleccionado.buscarEstado(estado1)!=null && seleccionado.buscarEstado(estado2)!=null)
+		{
+			cadena = equivalencia.cadenaDiferenciadora(seleccionado, seleccionado.buscarEstado(estado1), seleccionado.buscarEstado(estado2));
+		}
+		else
+		{
+			cadena = "Los estados no estan en el automata";
+		}
+		return cadena;
+	}
 	
 }
