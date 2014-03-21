@@ -180,7 +180,7 @@ public class PanelMatriz extends JPanel implements ActionListener{
 			}
 			ventana.actualizarMeley2(automata2);
 		}
-		ventana.actualizarPanel();
+		ventana.actualizarPanelReducidoMeely2();
 	}
 
 	private void guardarAutomata1() {
@@ -208,7 +208,7 @@ public class PanelMatriz extends JPanel implements ActionListener{
 			}
 			ventana.actualizarMeley1(automata1);
 		}
-		ventana.actualizarPanel();
+		ventana.actualizarPanelReducidoMeely1();
 	}
 
 	private void cambiartipoAutomata() {
