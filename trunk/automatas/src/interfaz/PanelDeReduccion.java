@@ -191,14 +191,17 @@ public class PanelDeReduccion extends JPanel implements ActionListener
 	}
 
 
-	public void actualizarPanel() {
+	public void actualizarPanelMeely1() {
+		
 		Object[][] data = ventana.automata1ReducidoMealy();
 		tablaEstados1.setModel(new DefaultTableModel(data, new String[] {
 				"Estado", "a", "b"
 		}
 				));
-
-		data = ventana.automata2ReducidoMealy();
+	}
+	
+	public void actualizarPanelMeely2() {
+		Object[][] data = ventana.automata2ReducidoMealy();
 		tablaEstados2.setModel(new DefaultTableModel(data, new String[] {
 				"Estado", "a", "b"
 		}

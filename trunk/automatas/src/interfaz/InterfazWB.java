@@ -228,11 +228,17 @@ public class InterfazWB extends JFrame {
 		}
 		return cadena;
 	}
-	public void actualizarPanel() {
-		panelReduccion.actualizarPanel();
-		
+	
+	public void actualizarPanelReducidoMeely1() {
+		if(!equivalencia.getAutomata1().getEstados().isEmpty())
+		panelReduccion.actualizarPanelMeely1();
 	}
 
+	public void actualizarPanelReducidoMeely2() {
+		if(!equivalencia.getAutomata2().getEstados().isEmpty())
+		panelReduccion.actualizarPanelMeely2();
+	}
+	
 	public void equivalencia() {
 		boolean eq = equivalencia.algoritmoDeEquivalencia(equivalencia.getAutomata1(), equivalencia.getAutomata2());
 		if(eq == true)
