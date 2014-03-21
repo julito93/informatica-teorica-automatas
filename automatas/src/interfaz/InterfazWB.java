@@ -47,7 +47,7 @@ public class InterfazWB extends JFrame {
 
 		setTitle("Automatas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 448, 374);
+		setBounds(100, 100, 541, 398);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -57,6 +57,7 @@ public class InterfazWB extends JFrame {
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 
 		panelMatriz = new PanelMatriz(this);
+		panelMatriz.setPreferredSize(new Dimension(110, 18));
 		tabbedPane.addTab("Tablas de estados", null, panelMatriz, null);
 
 		panelReduccion = new PanelDeReduccion(this);

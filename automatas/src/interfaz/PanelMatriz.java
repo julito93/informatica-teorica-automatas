@@ -70,7 +70,6 @@ public class PanelMatriz extends JPanel implements ActionListener{
 
 
 		JPanel panelTablas = new JPanel();
-		panelTablas.setLayout(new BorderLayout(0,0));
 
 
 		// matriz del automata 1
@@ -84,9 +83,10 @@ public class PanelMatriz extends JPanel implements ActionListener{
 
 		tablaEstados1 = new JTable();
 		Object[][] data = new Object[10][3];
+		panelTablas.setLayout(new BoxLayout(panelTablas, BoxLayout.X_AXIS));
 		tablaEstados1.setModel(new DefaultTableModel(data,new String[] {"Estado", "a", "b"}));
 		scrollMatriz.setViewportView(tablaEstados1);
-		panelTablas.add(bloqueMatriz1,BorderLayout.CENTER);
+		panelTablas.add(bloqueMatriz1);
 
 		//matriz del automata 2
 
@@ -104,7 +104,7 @@ public class PanelMatriz extends JPanel implements ActionListener{
 		}
 				));
 		scrollMatriz_1.setViewportView(tablaEstados2);
-		panelTablas.add(bloqueMatriz2,BorderLayout.WEST);
+		panelTablas.add(bloqueMatriz2);
 
 		scrollMatriz = new JScrollPane(panelTablas);
 		add(scrollMatriz, BorderLayout.CENTER);
@@ -114,16 +114,16 @@ public class PanelMatriz extends JPanel implements ActionListener{
 		add(panel, BorderLayout.SOUTH);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JButton btGuardar2 = new JButton("guardar2");
-		panel.add(btGuardar2);
-		btGuardar2.addActionListener(this);
-		btGuardar2.setActionCommand("guardar2");
-
 
 		JButton btnGuardar1 = new JButton("guardar1");
 		btnGuardar1.addActionListener(this);
 		btnGuardar1.setActionCommand("guardar1");
 		panel.add(btnGuardar1);
+		
+				JButton btGuardar2 = new JButton("guardar2");
+				panel.add(btGuardar2);
+				btGuardar2.addActionListener(this);
+				btGuardar2.setActionCommand("guardar2");
 
 	}
 

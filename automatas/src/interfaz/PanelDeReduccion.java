@@ -39,7 +39,7 @@ public class PanelDeReduccion extends JPanel implements ChangeListener
 	private JComboBox<String> cbAutomatas;
 	
 	public PanelDeReduccion(InterfazWB interfaz) {
-		setPreferredSize(new Dimension(448, 339));
+		setPreferredSize(new Dimension(477, 339));
 		setLayout(new BorderLayout());
 		ventana = interfaz;
 
@@ -54,7 +54,6 @@ public class PanelDeReduccion extends JPanel implements ChangeListener
 		panelTipo.add(rDBReconocedor);
 
 		JPanel panelTablas = new JPanel();
-		panelTablas.setLayout(new BorderLayout());
 
 
 		// matriz del automata 1
@@ -68,9 +67,10 @@ public class PanelDeReduccion extends JPanel implements ChangeListener
 
 		tablaEstados1 = new JTable();
 		Object[][] data = new Object[10][3];
+		panelTablas.setLayout(new BoxLayout(panelTablas, BoxLayout.X_AXIS));
 		tablaEstados1.setModel(new DefaultTableModel(data,new String[] {"Estado", "a", "b"}));
 		scrollMatriz.setViewportView(tablaEstados1);
-		panelTablas.add(bloqueMatriz1,BorderLayout.CENTER);
+		panelTablas.add(bloqueMatriz1);
 
 		//matriz del automata 2
 
@@ -84,7 +84,7 @@ public class PanelDeReduccion extends JPanel implements ChangeListener
 		data = new Object[10][3];
 		tablaEstados2.setModel(new DefaultTableModel(data,new String[] {"Estado", "a", "b"}));
 		scrollMatriz_1.setViewportView(tablaEstados2);
-		panelTablas.add(bloqueMatriz2,BorderLayout.WEST);
+		panelTablas.add(bloqueMatriz2);
 
 		scrollMatriz = new JScrollPane(panelTablas);
 		add(scrollMatriz, BorderLayout.CENTER);
@@ -92,10 +92,10 @@ public class PanelDeReduccion extends JPanel implements ChangeListener
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		add(panel, BorderLayout.SOUTH);
-		panel.setLayout(new BorderLayout(0, 0));
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JPanel panel_1 = new JPanel();
-		panel.add(panel_1, BorderLayout.WEST);
+		panel.add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
 		JButton btnNewButton = new JButton("Cadena Diferenciadora");
@@ -107,10 +107,11 @@ public class PanelDeReduccion extends JPanel implements ChangeListener
 		panel_1.add(btnNewButton, BorderLayout.NORTH);
 		
 		lblCadena = new JLabel("---------");
+		lblCadena.setAutoscrolls(true);
 		panel_1.add(lblCadena, BorderLayout.WEST);
 		
 		JPanel panel_2 = new JPanel();
-		panel.add(panel_2, BorderLayout.CENTER);
+		panel.add(panel_2);
 		panel_2.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel_3 = new JPanel();
@@ -135,7 +136,7 @@ public class PanelDeReduccion extends JPanel implements ChangeListener
 		
 		JPanel panel_5 = new JPanel();
 		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Escoja Automata", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel.add(panel_5, BorderLayout.EAST);
+		panel.add(panel_5);
 		
 		cbAutomatas = new JComboBox<String>();
 		cbAutomatas.setModel(new DefaultComboBoxModel<String>(new String[] {"Automata1", "Automata2"}));
@@ -183,7 +184,7 @@ public class PanelDeReduccion extends JPanel implements ChangeListener
 		// TODO Auto-generated method stub
 		String automata=(String) cbAutomatas.getSelectedItem();
 		String cadena= ventana.cadenaDiferenciadora(Estado1,Estado2,automata);
-		lblCadena.setText(cadena.equals("")?"Los estados Son equivalentes":cadena);
+		lblCadena.setText(cadena.equals("")?"ambos estados deben pertenecer al automata":cadena);
 	}
 	
 }
