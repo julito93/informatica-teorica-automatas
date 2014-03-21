@@ -28,6 +28,7 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.UIManager;
+import java.awt.Dimension;
 
 public class PanelMatriz extends JPanel implements ActionListener{
 
@@ -40,7 +41,7 @@ public class PanelMatriz extends JPanel implements ActionListener{
 
 	private JTable tablaEstados2;
 
-	private JButton cambiarTipo;
+	private JRadioButton cambiarTipo;
 
 	private JScrollPane scrollMatriz_1;
 
@@ -51,6 +52,7 @@ public class PanelMatriz extends JPanel implements ActionListener{
 	 * Create the panel.
 	 */
 	public PanelMatriz(InterfazWB ventana) {
+		setPreferredSize(new Dimension(448, 339));
 		this.ventana=ventana;
 		reconocedor=false;
 		setLayout(new BorderLayout(0, 0));
@@ -59,10 +61,10 @@ public class PanelMatriz extends JPanel implements ActionListener{
 		panelTipo.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Escoja si es un Automata de Mealy \u00F3 de Moore", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		add(panelTipo, BorderLayout.NORTH);
 
-		cambiarTipo = new JButton("Cambiar tipo");
+		cambiarTipo = new JRadioButton("Cambiar tipo");
 		cambiarTipo.addActionListener(this);
+		panelTipo.setLayout(new BorderLayout(0, 0));
 		cambiarTipo.setActionCommand("cambiar tipo");
-		panelTipo.setLayout(new FlowLayout());
 		panelTipo.add(cambiarTipo);
 
 
@@ -77,6 +79,7 @@ public class PanelMatriz extends JPanel implements ActionListener{
 		bloqueMatriz1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		JScrollPane scrollMatriz = new JScrollPane();
+		scrollMatriz.setPreferredSize(new Dimension(176, 186));
 		bloqueMatriz1.add(scrollMatriz);
 
 		tablaEstados1 = new JTable();
@@ -91,6 +94,7 @@ public class PanelMatriz extends JPanel implements ActionListener{
 		bloqueMatriz2.setBorder(new TitledBorder(null, "Tabla de Estados del automata 2", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		bloqueMatriz2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		scrollMatriz_1=new JScrollPane();
+		scrollMatriz_1.setPreferredSize(new Dimension(176, 186));
 		bloqueMatriz2.add(scrollMatriz_1);
 		tablaEstados2 = new JTable();
 		data = new Object[10][3];
