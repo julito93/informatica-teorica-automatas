@@ -10,6 +10,7 @@ import javax.swing.JTabbedPane;
 import mundo.Automata;
 import mundo.Equivalencia;
 import mundo.Estado;
+import java.awt.Dimension;
 
 public class InterfazWB extends JFrame {
 
@@ -29,7 +30,8 @@ public class InterfazWB extends JFrame {
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					System.out.println(e.getMessage());
+//					e.printStackTrace();
 				}
 			}
 		});
@@ -39,12 +41,13 @@ public class InterfazWB extends JFrame {
 	 * Create the frame.
 	 */
 	public InterfazWB() {
+		setPreferredSize(new Dimension(448, 339));
 
 		equivalencia = new Equivalencia();
 
 		setTitle("Automatas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1004, 374);
+		setBounds(100, 100, 448, 374);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -233,4 +236,5 @@ public class InterfazWB extends JFrame {
 			}
 		}
 	}
+	
 }

@@ -13,6 +13,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
+import java.awt.Dimension;
 
 public class PanelDeReduccion extends JPanel implements ChangeListener
 {
@@ -25,7 +26,9 @@ public class PanelDeReduccion extends JPanel implements ChangeListener
 	private JRadioButton rDBReconocedor;
 	private JTextField textField_1;
 	private JTextField textField;
+	private JScrollPane scrollMatriz_1;
 	public PanelDeReduccion(InterfazWB interfaz) {
+		setPreferredSize(new Dimension(448, 339));
 		setLayout(new BorderLayout());
 		ventana = interfaz;
 
@@ -48,6 +51,7 @@ public class PanelDeReduccion extends JPanel implements ChangeListener
 		bloqueMatriz1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		JScrollPane scrollMatriz = new JScrollPane();
+		scrollMatriz.setPreferredSize(new Dimension(176, 186));
 		bloqueMatriz1.add(scrollMatriz);
 
 		tablaEstados1 = new JTable();
@@ -61,12 +65,13 @@ public class PanelDeReduccion extends JPanel implements ChangeListener
 		JPanel bloqueMatriz2 = new JPanel();
 		bloqueMatriz2.setBorder(new TitledBorder(null, "Tabla de Estados del automata 2", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		bloqueMatriz2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		scrollMatriz=new JScrollPane();
-		bloqueMatriz2.add(scrollMatriz);
+		scrollMatriz_1=new JScrollPane();
+		scrollMatriz_1.setPreferredSize(new Dimension(176, 186));
+		bloqueMatriz2.add(scrollMatriz_1);
 		tablaEstados2 = new JTable();
 		data = new Object[10][3];
 		tablaEstados2.setModel(new DefaultTableModel(data,new String[] {"Estado", "a", "b"}));
-		scrollMatriz.setViewportView(tablaEstados2);
+		scrollMatriz_1.setViewportView(tablaEstados2);
 		panelTablas.add(bloqueMatriz2,BorderLayout.WEST);
 
 		scrollMatriz = new JScrollPane(panelTablas);
