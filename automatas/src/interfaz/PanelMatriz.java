@@ -61,7 +61,7 @@ public class PanelMatriz extends JPanel implements ActionListener{
 		panelTipo.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Escoja si es un Automata de Mealy \u00F3 de Moore", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		add(panelTipo, BorderLayout.NORTH);
 
-		cambiarTipo = new JRadioButton("Cambiar tipo");
+		cambiarTipo = new JRadioButton("Es reconocedor");
 		cambiarTipo.addActionListener(this);
 		panelTipo.setLayout(new BorderLayout(0, 0));
 		cambiarTipo.setActionCommand("cambiar tipo");
