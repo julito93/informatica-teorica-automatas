@@ -11,6 +11,8 @@ import mundo.Automata;
 import mundo.Equivalencia;
 import mundo.Estado;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import javax.swing.BoxLayout;
 
 public class InterfazWB extends JFrame {
 
@@ -41,20 +43,20 @@ public class InterfazWB extends JFrame {
 	 * Create the frame.
 	 */
 	public InterfazWB() {
-		setPreferredSize(new Dimension(448, 339));
+		setPreferredSize(new Dimension(480, 339));
 
 		equivalencia = new Equivalencia();
 
 		setTitle("Automatas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 541, 398);
+		setBounds(100, 100, 640, 398);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.X_AXIS));
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		contentPane.add(tabbedPane, BorderLayout.CENTER);
+		contentPane.add(tabbedPane);
 
 		panelMatriz = new PanelMatriz(this);
 		panelMatriz.setPreferredSize(new Dimension(110, 18));
@@ -246,10 +248,6 @@ public class InterfazWB extends JFrame {
 		if(seleccionado.buscarEstado(estado1)!=null && seleccionado.buscarEstado(estado2)!=null)
 		{
 			cadena = equivalencia.cadenaDiferenciadora(seleccionado, seleccionado.buscarEstado(estado1), seleccionado.buscarEstado(estado2));
-		}
-		else
-		{
-			cadena = "Los estados no estan en el automata";
 		}
 		return cadena;
 	}

@@ -135,12 +135,14 @@ public class PanelDeReduccion extends JPanel implements ChangeListener
 		panel_4.add(lblEstadoDelAutomata);
 		
 		JPanel panel_5 = new JPanel();
+		panel_5.setPreferredSize(new Dimension(100, 50));
 		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Escoja Automata", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.add(panel_5);
+		panel_5.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		cbAutomatas = new JComboBox<String>();
 		cbAutomatas.setModel(new DefaultComboBoxModel<String>(new String[] {"Automata1", "Automata2"}));
-		cbAutomatas.setEditable(true);
+		cbAutomatas.setEditable(false);
 		panel_5.add(cbAutomatas);
 
 	}
