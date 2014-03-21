@@ -47,6 +47,12 @@ public class PanelMatriz extends JPanel implements ActionListener{
 
 	private boolean reconocedor;
 
+	private JButton btnGuardar1;
+
+	private JButton btGuardar2;
+
+	private JButton btGuardar3;
+
 
 	/**
 	 * Create the panel.
@@ -66,12 +72,7 @@ public class PanelMatriz extends JPanel implements ActionListener{
 		panelTipo.setLayout(new BorderLayout(0, 0));
 		cambiarTipo.setActionCommand("cambiar tipo");
 		panelTipo.add(cambiarTipo);
-
-
-
 		JPanel panelTablas = new JPanel();
-
-
 		// matriz del automata 1
 		JPanel bloqueMatriz1 = new JPanel();
 		bloqueMatriz1.setBorder(new TitledBorder(null, "Tabla de Estados del automata 1", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -115,15 +116,20 @@ public class PanelMatriz extends JPanel implements ActionListener{
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 
-		JButton btnGuardar1 = new JButton("guardar1");
+		btnGuardar1 = new JButton("guardar1");
 		btnGuardar1.addActionListener(this);
 		btnGuardar1.setActionCommand("guardar1");
 		panel.add(btnGuardar1);
 		
-				JButton btGuardar2 = new JButton("guardar2");
+				btGuardar2 = new JButton("guardar2");
 				panel.add(btGuardar2);
 				btGuardar2.addActionListener(this);
 				btGuardar2.setActionCommand("guardar2");
+				
+				btGuardar3 = new JButton("Equivalencia");
+				panel.add(btGuardar3);
+				btGuardar3.addActionListener(this);
+				btGuardar3.setActionCommand("equivalencia");
 
 	}
 
@@ -139,9 +145,13 @@ public class PanelMatriz extends JPanel implements ActionListener{
 		{
 			guardarAutomata1();
 		}
-		else
+		else if(cmd.equals("guardar2"))
 		{
 			guardarAutomata2();
+		}
+		else
+		{
+			ventana.equivalencia();
 		}
 	}
 
@@ -170,6 +180,7 @@ public class PanelMatriz extends JPanel implements ActionListener{
 			}
 			ventana.actualizarMeley2(automata2);
 		}
+		ventana.actualizarPanel();
 	}
 
 	private void guardarAutomata1() {
@@ -197,6 +208,7 @@ public class PanelMatriz extends JPanel implements ActionListener{
 			}
 			ventana.actualizarMeley1(automata1);
 		}
+		ventana.actualizarPanel();
 	}
 
 	private void cambiartipoAutomata() {
