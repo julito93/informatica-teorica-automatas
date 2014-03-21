@@ -228,5 +228,17 @@ public class InterfazWB extends JFrame {
 		}
 		return cadena;
 	}
-	
+	public void actualizarPanel() {
+		panelReduccion.actualizarPanel();
+		
+	}
+
+	public void equivalencia() {
+		boolean eq = equivalencia.algoritmoDeEquivalencia(equivalencia.getAutomata1(), equivalencia.getAutomata2());
+		if(eq == true)
+			JOptionPane.showMessageDialog(null, "Los automatas no son equivalentes");
+		else
+			JOptionPane.showMessageDialog(null, "Los automatas son equivalentes");
+		
+	}
 }

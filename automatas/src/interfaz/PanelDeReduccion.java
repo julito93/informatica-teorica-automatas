@@ -156,24 +156,42 @@ public class PanelDeReduccion extends JPanel implements ActionListener
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {if(rDBReconocedor.isSelected()==true)
+	public void actionPerformed(ActionEvent e) 
 	{
-		Object[][] data = ventana.automata1ReducidoMoore();
-		tablaEstados1.setModel(new DefaultTableModel(data, new String[] {
-				"Estado", "a", "b","salida"
+		if(rDBReconocedor.isSelected()==true)
+		{
+			Object[][] data = ventana.automata1ReducidoMoore();
+			tablaEstados1.setModel(new DefaultTableModel(data, new String[] {
+					"Estado", "a", "b","salida"
+			}
+					));
+
+
+			data = ventana.automata2ReducidoMoore();
+			tablaEstados2.setModel(new DefaultTableModel(data, new String[] {
+					"Estado", "a", "b","salida"
+			}
+					));
+
 		}
-				));
+		else
+		{
+			Object[][] data = ventana.automata1ReducidoMealy();
+			tablaEstados1.setModel(new DefaultTableModel(data, new String[] {
+					"Estado", "a", "b"
+			}
+					));
 
-
-		data = ventana.automata2ReducidoMoore();
-		tablaEstados2.setModel(new DefaultTableModel(data, new String[] {
-				"Estado", "a", "b","salida"
+			data = ventana.automata2ReducidoMealy();
+			tablaEstados2.setModel(new DefaultTableModel(data, new String[] {
+					"Estado", "a", "b"
+			}
+					));
 		}
-				));
-
 	}
-	else
-	{
+
+
+	public void actualizarPanel() {
 		Object[][] data = ventana.automata1ReducidoMealy();
 		tablaEstados1.setModel(new DefaultTableModel(data, new String[] {
 				"Estado", "a", "b"
@@ -185,7 +203,6 @@ public class PanelDeReduccion extends JPanel implements ActionListener
 				"Estado", "a", "b"
 		}
 				));
-	}
 	}
 
 }
