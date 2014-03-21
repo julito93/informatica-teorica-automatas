@@ -66,29 +66,6 @@ public class InterfazWB extends JFrame {
 		tabbedPane.addTab("Reducci\u00F3n de automatas", null, panelReduccion,
 				null);
 
-		equivalencia = new Equivalencia();
-		System.out.println("-------------------------------");
-		System.out.println("   reconocedores    ");
-		System.out.println("-------------------------------");
-
-		String[][] matriz3 = { { "0", "0", "1", "s" }, { "A", "B", "A", "0" },
-				{ "B", "C", "D", "0" }, { "C", "E", "C", "0" },
-				{ "D", "F", "B", "0" }, { "E", "G", "E", "0" },
-				{ "F", "H", "F", "0" }, { "G", "I", "G", "0" },
-				{ "H", "J", "H", "0" }, { "I", "A", "K", "1" },
-				{ "J", "K", "J", "0" }, { "K", "A", "K", "1" } };
-
-		String[][] matriz4 = { { "0", "0", "1", "s" }, { "L", "M", "L", "0" },
-				{ "M", "N", "M", "0" }, { "N", "O", "N", "0" },
-				{ "O", "P", "O", "0" }, { "P", "Q", "P", "0" },
-				{ "Q", "M", "Q", "1" } };
-		for (int i = 0; i < matriz4.length; i++) {
-			String cadena = "";
-			for (int j = 0; j < matriz4[i].length; j++) {
-				cadena += matriz4[i][j] + "  ";
-			}
-		}
-		equivalencia.inicializarReonocedor(matriz3, matriz4);
 	}
 
 	public Object[][] automata1ReducidoMealy() {
