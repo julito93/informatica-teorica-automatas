@@ -32,9 +32,6 @@ import java.awt.Dimension;
 
 public class PanelMatriz extends JPanel implements ActionListener{
 
-
-
-
 	private InterfazWB ventana;
 
 	private JTable tablaEstados1;
@@ -52,6 +49,14 @@ public class PanelMatriz extends JPanel implements ActionListener{
 	private JButton btGuardar2;
 
 	private JButton btGuardar3;
+	
+	private String[][] dataMealy1;
+	
+	private String[][] dataMealy2;
+	
+	private String[][] dataMoore1;
+	
+	private String[][] dataMoore2;
 
 
 	/**
@@ -83,9 +88,20 @@ public class PanelMatriz extends JPanel implements ActionListener{
 		bloqueMatriz1.add(scrollMatriz);
 
 		tablaEstados1 = new JTable();
-		Object[][] data = new Object[10][3];
+		dataMealy1 = new String[10][3];
+		
+		dataMealy1[0][0] = "A";
+		dataMealy1[1][0] = "B";
+		dataMealy1[2][0] = "C";
+		dataMealy1[3][0] = "D";
+		dataMealy1[4][0] = "E";
+		dataMealy1[5][0] = "F";
+		dataMealy1[6][0] = "G";
+		dataMealy1[7][0] = "H";
+		dataMealy1[8][0] = "I";
+		dataMealy1[9][0] = "J";
 		panelTablas.setLayout(new BoxLayout(panelTablas, BoxLayout.X_AXIS));
-		tablaEstados1.setModel(new DefaultTableModel(data,new String[] {"Estado", "a", "b"}));
+		tablaEstados1.setModel(new DefaultTableModel(dataMealy1,new String[] {"Estado", "a", "b"}));
 		scrollMatriz.setViewportView(tablaEstados1);
 		panelTablas.add(bloqueMatriz1);
 
@@ -98,8 +114,18 @@ public class PanelMatriz extends JPanel implements ActionListener{
 		scrollMatriz_1.setPreferredSize(new Dimension(176, 186));
 		bloqueMatriz2.add(scrollMatriz_1);
 		tablaEstados2 = new JTable();
-		data = new Object[10][3];
-		tablaEstados2.setModel(new DefaultTableModel(data,
+		dataMealy2 = new String[10][3];
+		dataMealy2[0][0] = "K";
+		dataMealy2[1][0] = "L";
+		dataMealy2[2][0] = "M";
+		dataMealy2[3][0] = "N";
+		dataMealy2[4][0] = "O";
+		dataMealy2[5][0] = "P";
+		dataMealy2[6][0] = "Q";
+		dataMealy2[7][0] = "R";
+		dataMealy2[8][0] = "S";
+		dataMealy2[9][0] = "T";
+		tablaEstados2.setModel(new DefaultTableModel(dataMealy2,
 				new String[] {
 				"Estado", "a", "b"
 		}
@@ -130,6 +156,11 @@ public class PanelMatriz extends JPanel implements ActionListener{
 				panel.add(btGuardar3);
 				btGuardar3.addActionListener(this);
 				btGuardar3.setActionCommand("equivalencia");
+				
+				
+		
+		dataMoore1 = dataMealy1;
+		dataMoore2 = dataMealy2;
 
 	}
 
@@ -165,6 +196,7 @@ public class PanelMatriz extends JPanel implements ActionListener{
 			for (int i = 0; i < automata2.length; i++) {
 				for (int j = 0; j < automata2[0].length; j++) {
 					automata2[i][j]=(String)tablaEstados2.getModel().getValueAt(i, j);
+					dataMoore2[i][j]= (String) tablaEstados2.getModel().getValueAt(i, j);
 				}
 			}
 			ventana.actualizarReconocedor2(automata2);
@@ -176,6 +208,7 @@ public class PanelMatriz extends JPanel implements ActionListener{
 			for (int i = 0; i < automata2.length; i++) {
 				for (int j = 0; j < automata2[0].length; j++) {
 					automata2[i][j]=(String)tablaEstados2.getModel().getValueAt(i, j);
+					dataMealy2[i][j]= (String) tablaEstados2.getModel().getValueAt(i, j);
 				}
 			}
 			ventana.actualizarMeley2(automata2);
@@ -193,6 +226,7 @@ public class PanelMatriz extends JPanel implements ActionListener{
 			for (int i = 0; i < automata1.length; i++) {
 				for (int j = 0; j < automata1[0].length; j++) {
 					automata1[i][j]=(String)tablaEstados1.getModel().getValueAt(i, j);
+					dataMoore1[i][j]= (String) tablaEstados1.getModel().getValueAt(i, j);
 				}
 			}
 			ventana.actualizarReconocedor1(automata1);
@@ -204,11 +238,12 @@ public class PanelMatriz extends JPanel implements ActionListener{
 			for (int i = 0; i < automata1.length; i++) {
 				for (int j = 0; j < automata1[0].length; j++) {
 					automata1[i][j]=(String)tablaEstados1.getModel().getValueAt(i, j);
+					dataMealy1[i][j]= (String) tablaEstados1.getModel().getValueAt(i, j);
 				}
 			}
 			ventana.actualizarMeley1(automata1);
 		}
-		ventana.actualizarPanelReducidoMeely1();
+		
 	}
 
 	private void cambiartipoAutomata() {
@@ -217,12 +252,12 @@ public class PanelMatriz extends JPanel implements ActionListener{
 		{
 			reconocedor=true;
 			Object[][] data = new Object[10][4];
-			tablaEstados1.setModel(new DefaultTableModel(data, new String[] {
+			tablaEstados1.setModel(new DefaultTableModel(dataMealy1, new String[] {
 					"Estado", "a", "b","salida"
 			}));
 
 			data = new Object[10][4];
-			tablaEstados2.setModel(new DefaultTableModel(data, new String[] {
+			tablaEstados2.setModel(new DefaultTableModel(dataMealy2, new String[] {
 					"Estado", "a", "b","salida"
 			}
 					));
@@ -231,12 +266,12 @@ public class PanelMatriz extends JPanel implements ActionListener{
 		{
 			reconocedor=false;
 			Object[][] data = new Object[10][3];
-			tablaEstados1.setModel(new DefaultTableModel(data, new String[] {
+			tablaEstados1.setModel(new DefaultTableModel(dataMoore1, new String[] {
 					"Estado", "a", "b"
 			}));
 
 			data = new Object[10][3];
-			tablaEstados2.setModel(new DefaultTableModel(data, new String[] {
+			tablaEstados2.setModel(new DefaultTableModel(dataMoore2, new String[] {
 					"Estado", "a", "b"
 			}));
 		}
