@@ -29,22 +29,33 @@ public class Equivalencia
 	public void guardarReconocedor1(String[][] matriz1)
 	{
 		reconocedor = true;
-		for ( int i = 0; i < matriz1.length; i++ )
+		boolean parada = false;
+		for ( int i = 0; i < matriz1.length&&!parada; i++ )
 		{
-			Transicion a = new Transicion( "a", matriz1[i][3],  matriz1[i][1]);
+			if(matriz1[i][3]!=null)
+			{Transicion a = new Transicion( "a", matriz1[i][3],  matriz1[i][1]);
 			Transicion b = new Transicion( "b", matriz1[i][3],  matriz1[i][2]);
 			automata1.addEstado( matriz1[i][0], a, b );
+			}
+			else
+				parada=true;
 		}
 	}
 	
 	public void guardarReconocedor2(String[][] matriz2)
 	{
 		reconocedor = true;
-		for ( int i = 0; i < matriz2.length; i++ )
+		boolean parada = false;
+		for ( int i = 0; i < matriz2.length&&!parada; i++ )
 		{
-			Transicion a = new Transicion( "a", matriz2[i][3],  matriz2[i][1]);
-			Transicion b = new Transicion( "b", matriz2[i][3],  matriz2[i][2]);
-			automata2.addEstado( matriz2[i][0], a, b );
+			if(matriz2[i][3]!=null)
+			{
+				Transicion a = new Transicion( "a", matriz2[i][3],  matriz2[i][1]);
+				Transicion b = new Transicion( "b", matriz2[i][3],  matriz2[i][2]);
+				automata2.addEstado( matriz2[i][0], a, b );
+			}
+			else
+				parada=true;
 		}
 	}
 	
