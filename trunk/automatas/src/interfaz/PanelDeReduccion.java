@@ -106,7 +106,7 @@ public class PanelDeReduccion extends JPanel implements ActionListener
 		});
 		panel_1.add(btnNewButton, BorderLayout.NORTH);
 
-		lblCadena = new JLabel("---------");
+		lblCadena = new JLabel("- - - - - - - - -");
 		lblCadena.setAutoscrolls(true);
 		panel_1.add(lblCadena, BorderLayout.WEST);
 
@@ -200,7 +200,8 @@ public class PanelDeReduccion extends JPanel implements ActionListener
 				));
 	}
 	
-	public void actualizarPanelMeely2() {
+	public void actualizarPanelMeely2() 
+	{
 		Object[][] data = ventana.automata2ReducidoMealy();
 		tablaEstados2.setModel(new DefaultTableModel(data, new String[] {
 				"Estado", "a", "b"

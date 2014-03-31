@@ -28,28 +28,29 @@ public class Equivalencia
 
 	public void guardarReconocedor1(String[][] matriz1)
 	{
-		
-		for ( int i = 1; i < matriz1.length; i++ )
+		reconocedor = true;
+		for ( int i = 0; i < matriz1.length; i++ )
 		{
-			Transicion a = new Transicion( matriz1[0][1], matriz1[i][3],  matriz1[i][1]);
-			Transicion b = new Transicion( matriz1[0][2], matriz1[i][3],  matriz1[i][2]);
+			Transicion a = new Transicion( "a", matriz1[i][3],  matriz1[i][1]);
+			Transicion b = new Transicion( "b", matriz1[i][3],  matriz1[i][2]);
 			automata1.addEstado( matriz1[i][0], a, b );
 		}
 	}
 	
 	public void guardarReconocedor2(String[][] matriz2)
 	{
-		for ( int i = 1; i < matriz2.length; i++ )
+		reconocedor = true;
+		for ( int i = 0; i < matriz2.length; i++ )
 		{
-			Transicion a = new Transicion( matriz2[0][1], matriz2[i][3],  matriz2[i][1]);
-			Transicion b = new Transicion( matriz2[0][2], matriz2[i][3],  matriz2[i][2]);
+			Transicion a = new Transicion( "a", matriz2[i][3],  matriz2[i][1]);
+			Transicion b = new Transicion( "b", matriz2[i][3],  matriz2[i][2]);
 			automata2.addEstado( matriz2[i][0], a, b );
 		}
 	}
 	
 	public void inicializarMealy(String[][] matriz1, String[][] matriz2 )
 	{
-		
+		reconocedor = false;
 		guardarMealy1(matriz1);
 		guardarMealy2(matriz2);
 				
@@ -57,26 +58,27 @@ public class Equivalencia
 
 	public void guardarMealy1(String[][] matriz1)
 	{
+		reconocedor = false;
 		for ( int i = 0; i < matriz1.length; i++ )
 		{
 			if(cadenaValida(matriz1[i][0]) && cadenaValida(matriz1[i][1])&& cadenaValida(matriz1[i][2]))
 			{
 			String[] array = matriz1[i][1].split( "," );
-			Transicion a = new Transicion( matriz1[i][1], array[1],  array[0]);
+			Transicion a = new Transicion( "a", array[1],  array[0]);
 			String[] array2 = matriz1[i][2].split( "," );
-			Transicion b = new Transicion( matriz1[i][2],array2[1],  array2[0]);
+			Transicion b = new Transicion( "b",array2[1],  array2[0]);
 			automata1.addEstado( matriz1[i][0], a, b );
 			}
 			else if(cadenaValida(matriz1[i][0])&& cadenaValida(matriz1[i][1]))
 			{
 				String[] array = matriz1[i][1].split( "," );
-				Transicion a = new Transicion( matriz1[i][1], array[1],  array[0]);
+				Transicion a = new Transicion( "a", array[1],  array[0]);
 				automata1.addEstado( matriz1[i][0], a, null );
 			}
 			else if(cadenaValida(matriz1[i][0])&& cadenaValida(matriz1[i][2]))
 			{
 				String[] array = matriz1[i][2].split( "," );
-				Transicion b = new Transicion( matriz1[i][2], array[2],  array[0]);
+				Transicion b = new Transicion( "b", array[2],  array[0]);
 				automata1.addEstado( matriz1[i][0], null, b );
 			}
 			else if(cadenaValida(matriz1[i][0]))
@@ -88,27 +90,28 @@ public class Equivalencia
 	
 	public void guardarMealy2(String[][] matriz2)
 	{
+		reconocedor = false;
 		for ( int i = 0; i < matriz2.length; i++ )
 		{
 			if(cadenaValida(matriz2[i][1])&& cadenaValida(matriz2[i][2]) && cadenaValida(matriz2[i][0]))
 			{
 			String[] array = matriz2[i][1].split( "," );
-			Transicion a = new Transicion( matriz2[0][1], array[1],  array[0]);
+			Transicion a = new Transicion( "a", array[1],  array[0]);
 			
 			String[] array2 = matriz2[i][2].split( "," );
-			Transicion b = new Transicion( matriz2[i][2],array2[1],  array2[0]);
+			Transicion b = new Transicion( "b",array2[1],  array2[0]);
 			automata2.addEstado( matriz2[i][0], a, b );
 			}
 			else if(cadenaValida(matriz2[i][1]) && cadenaValida(matriz2[i][0]))
 			{
 				String[] array = matriz2[i][1].split( "," );
-				Transicion a = new Transicion( matriz2[0][1], array[1],  array[0]);
+				Transicion a = new Transicion( "a", array[1],  array[0]);
 				automata2.addEstado( matriz2[i][0], a, null );
 			}
 			else if(cadenaValida(matriz2[i][2])&&cadenaValida(matriz2[i][0]))
 			{
 				String[] array2 = matriz2[i][2].split( "," );
-				Transicion b = new Transicion( matriz2[0][2],array2[1],  array2[0]);
+				Transicion b = new Transicion("b",array2[1],  array2[0]);
 				automata2.addEstado( matriz2[i][0],null, b );
 			}
 			else if(cadenaValida(matriz2[i][0]))
