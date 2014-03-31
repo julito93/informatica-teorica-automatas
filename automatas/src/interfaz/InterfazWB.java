@@ -77,10 +77,10 @@ public class InterfazWB extends JFrame
 
 	public Object[][] automata1ReducidoMealy()
 		{
+			if(!equivalencia.getAutomata1().getEstados().isEmpty())
+				{
 			Automata automata = equivalencia.conexoYreducido(equivalencia
 					.getAutomata1());
-			if(automata != null)
-				{
 					Object[][] data = new Object[automata.getEstados().size()][3];
 					for (int i = 0; i < automata.getEstados().size(); i++)
 						{
@@ -100,10 +100,10 @@ public class InterfazWB extends JFrame
 
 	public Object[][] automata2ReducidoMealy()
 		{
+			if(!equivalencia.getAutomata2().getEstados().isEmpty())
+				{
 			Automata automata = equivalencia.conexoYreducido(equivalencia
 					.getAutomata2());
-			if(automata != null)
-				{
 					Object[][] data = new Object[automata.getEstados().size()][3];
 					for (int i = 0; i < automata.getEstados().size(); i++)
 						{
@@ -123,10 +123,10 @@ public class InterfazWB extends JFrame
 
 	public Object[][] automata1ReducidoMoore()
 		{
-			Automata automata = equivalencia.conexoYreducido(equivalencia
-					.getAutomata1());
-			if(automata != null)
+			if(!equivalencia.getAutomata1().getEstados().isEmpty())
 				{
+					Automata automata = equivalencia.conexoYreducido(equivalencia
+							.getAutomata1());
 					Object[][] data = new Object[automata.getEstados().size()][4];
 					for (int i = 0; i < automata.getEstados().size(); i++)
 						{
@@ -145,10 +145,10 @@ public class InterfazWB extends JFrame
 
 	public Object[][] automata2ReducidoMoore()
 		{
+			if(!equivalencia.getAutomata2().getEstados().isEmpty())
+				{
 			Automata automata = equivalencia.conexoYreducido(equivalencia
 					.getAutomata2());
-			if(automata != null)
-				{
 					Object[][] data = new Object[automata.getEstados().size()][4];
 					for (int i = 0; i < automata.getEstados().size(); i++)
 						{
@@ -170,8 +170,6 @@ public class InterfazWB extends JFrame
 			// TODO Auto-generated method stub
 			if (equivalencia.getAutomata1().getEstados().isEmpty())
 				{
-					equivalencia.getAutomata1().getEstados().clear();
-
 					equivalencia.guardarReconocedor1(automata1);
 					JOptionPane.showMessageDialog(this, "Guardado");
 
@@ -192,7 +190,6 @@ public class InterfazWB extends JFrame
 								JOptionPane.showMessageDialog(this, "Guardado");
 							}
 					}
-
 		}
 
 	public void actualizarMeley1(String[][] automata1)
@@ -200,8 +197,6 @@ public class InterfazWB extends JFrame
 			// TODO Auto-generated method stub
 			if (equivalencia.getAutomata1().getEstados().isEmpty())
 				{
-					equivalencia.getAutomata1().getEstados().clear();
-
 					equivalencia.guardarMealy1(automata1);
 					JOptionPane.showMessageDialog(this, "Guardado");
 
