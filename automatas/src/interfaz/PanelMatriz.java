@@ -1,5 +1,6 @@
 package interfaz;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import java.awt.BorderLayout;
@@ -49,13 +50,13 @@ public class PanelMatriz extends JPanel implements ActionListener{
 	private JButton btGuardar2;
 
 	private JButton btGuardar3;
-	
+
 	private String[][] dataMealy1;
-	
+
 	private String[][] dataMealy2;
-	
+
 	private String[][] dataMoore1;
-	
+
 	private String[][] dataMoore2;
 
 
@@ -89,7 +90,7 @@ public class PanelMatriz extends JPanel implements ActionListener{
 
 		tablaEstados1 = new JTable();
 		dataMealy1 = new String[10][3];
-		
+
 		dataMealy1[0][0] = "A";
 		dataMealy1[1][0] = "B";
 		dataMealy1[2][0] = "C";
@@ -127,7 +128,7 @@ public class PanelMatriz extends JPanel implements ActionListener{
 		dataMealy2[9][0] = "T";
 		tablaEstados2.setModel(new DefaultTableModel(dataMealy2,
 				new String[] {
-				"Estado", "a", "b"
+						"Estado", "a", "b"
 		}
 				));
 		scrollMatriz_1.setViewportView(tablaEstados2);
@@ -146,21 +147,43 @@ public class PanelMatriz extends JPanel implements ActionListener{
 		btnGuardar1.addActionListener(this);
 		btnGuardar1.setActionCommand("guardar1");
 		panel.add(btnGuardar1);
-		
-				btGuardar2 = new JButton("guardar2");
-				panel.add(btGuardar2);
-				btGuardar2.addActionListener(this);
-				btGuardar2.setActionCommand("guardar2");
-				
-				btGuardar3 = new JButton("Equivalencia");
-				panel.add(btGuardar3);
-				btGuardar3.addActionListener(this);
-				btGuardar3.setActionCommand("equivalencia");
-				
-				
-		
-		dataMoore1 = dataMealy1;
-		dataMoore2 = dataMealy2;
+
+		btGuardar2 = new JButton("guardar2");
+		panel.add(btGuardar2);
+		btGuardar2.addActionListener(this);
+		btGuardar2.setActionCommand("guardar2");
+
+		btGuardar3 = new JButton("Equivalencia");
+		panel.add(btGuardar3);
+		btGuardar3.addActionListener(this);
+		btGuardar3.setActionCommand("equivalencia");
+
+
+
+		dataMoore1 =  new String[10][4];
+
+		dataMoore1[0][0] = "A";
+		dataMoore1[1][0] = "B";
+		dataMoore1[2][0] = "C";
+		dataMoore1[3][0] = "D";
+		dataMoore1[4][0] = "E";
+		dataMoore1[5][0] = "F";
+		dataMoore1[6][0] = "G";
+		dataMoore1[7][0] = "H";
+		dataMoore1[8][0] = "I";
+		dataMoore1[9][0] = "J";
+
+		dataMoore2 = new String[10][4];
+		dataMoore2[0][0] = "K";
+		dataMoore2[1][0] = "L";
+		dataMoore2[2][0] = "M";
+		dataMoore2[3][0] = "N";
+		dataMoore2[4][0] = "O";
+		dataMoore2[5][0] = "P";
+		dataMoore2[6][0] = "Q";
+		dataMoore2[7][0] = "R";
+		dataMoore2[8][0] = "S";
+		dataMoore2[9][0] = "T";
 
 	}
 
@@ -169,112 +192,184 @@ public class PanelMatriz extends JPanel implements ActionListener{
 		// TODO Auto-generated method stub
 		String cmd = e.getActionCommand();
 		if(cmd.equals("cambiar tipo"))
-		{
-			cambiartipoAutomata();
-		}
+			{
+				cambiartipoAutomata();
+			}
 		else if(cmd.equals("guardar1"))
-		{
-			guardarAutomata1();
-		}
+			{
+				guardarAutomata1();
+			}
 		else if(cmd.equals("guardar2"))
-		{
-			guardarAutomata2();
-		}
+			{
+				guardarAutomata2();
+			}
 		else
-		{
-			ventana.equivalencia();
-		}
+			{
+				ventana.equivalencia();
+			}
 	}
 
 	private void guardarAutomata2() {
 		// TODO Auto-generated method stub
 		String[][] automata2;
+		boolean continua= false;
 		if(reconocedor)
-		{
-			automata2= new String[10][4];
+			{
+				automata2= new String[10][4];
 
-			for (int i = 0; i < automata2.length; i++) {
-				for (int j = 0; j < automata2[0].length; j++) {
-					automata2[i][j]=(String)tablaEstados2.getModel().getValueAt(i, j);
-					dataMoore2[i][j]= (String) tablaEstados2.getModel().getValueAt(i, j);
+				for (int i = 0; i < automata2.length && !continua; i++) {
+					for (int j = 0; j < automata2[0].length && !continua; j++) {
+											
+						String value = (String)tablaEstados2.getModel().getValueAt(i, j);
+						if(!value.equals(""))
+							if(j==0)
+								{
+									String aux = (String)tablaEstados2.getModel().getValueAt(i, j+1);
+									if(aux != null )
+										if(!aux.equals(""))
+											automata2[i][j]=value;
+										else
+											JOptionPane.showMessageDialog(null, "Formato de datos incorrecto");
+									else
+										continua = true;
+								}
+							else
+								automata2[i][j]=value;
+						else
+							continua=true;
+						
+						//					dataMoore2[i][j]= (String) tablaEstados2.getModel().getValueAt(i, j);
+					}
 				}
+				ventana.actualizarReconocedor2(automata2);
 			}
-			ventana.actualizarReconocedor2(automata2);
-		}
 		else
-		{
-			automata2= new String[10][3];
-
-			for (int i = 0; i < automata2.length; i++) {
-				for (int j = 0; j < automata2[0].length; j++) {
-					automata2[i][j]=(String)tablaEstados2.getModel().getValueAt(i, j);
-					dataMealy2[i][j]= (String) tablaEstados2.getModel().getValueAt(i, j);
-				}
+			{
+				automata2= new String[10][3];
+				for (int i = 0; i < automata2.length && !continua; i++) 
+					{
+						for (int j = 0; j < automata2[0].length && !continua; j++) 
+							{
+								
+								
+								String value = (String)tablaEstados2.getModel().getValueAt(i, j);
+								if(!value.equals(""))
+									if(j==0)
+										{
+											String aux = (String)tablaEstados2.getModel().getValueAt(i, j+1);
+											if(aux != null )
+												if(!aux.equals(""))
+													automata2[i][j]=value;
+												else
+													JOptionPane.showMessageDialog(null, "Formato de datos incorrecto");
+											else
+												continua = true;
+										}
+									else
+										automata2[i][j]=value;
+								else
+									continua=true;
+								
+								
+								//					dataMealy2[i][j]= (String) tablaEstados2.getModel().getValueAt(i, j);
+							}
+					}
+				ventana.actualizarMeley2(automata2);
 			}
-			ventana.actualizarMeley2(automata2);
-		}
-		ventana.actualizarPanelReducidoMeely2();
 	}
 
 	private void guardarAutomata1() {
 		// TODO Auto-generated method stub
 		String[][] automata1;
+		boolean continua = false;
 		if(reconocedor)
-		{
-			automata1= new String[10][4];
+			{
+				automata1= new String[10][4];
 
-			for (int i = 0; i < automata1.length; i++) {
-				for (int j = 0; j < automata1[0].length; j++) {
-					automata1[i][j]=(String)tablaEstados1.getModel().getValueAt(i, j);
-					dataMoore1[i][j]= (String) tablaEstados1.getModel().getValueAt(i, j);
+				for (int i = 0; i < automata1.length && !continua; i++) {
+					for (int j = 0; j < automata1[0].length && !continua; j++) 
+						{
+						String value = (String)tablaEstados1.getModel().getValueAt(i, j);
+						if(!value.equals(""))
+							if(j==0)
+								{
+									String aux = (String)tablaEstados1.getModel().getValueAt(i, j+1);
+									if(aux != null )
+										if(!aux.equals(""))
+											automata1[i][j]=value;
+										else
+											JOptionPane.showMessageDialog(null, "Formato de datos incorrecto");
+									else
+										continua = true;
+								}
+							else
+								automata1[i][j]=value;
+						else
+							continua=true;
+
+						//					dataMoore1[i][j]= (String) tablaEstados1.getModel().getValueAt(i, j);
+					}
 				}
+				ventana.actualizarReconocedor1(automata1);
 			}
-			ventana.actualizarReconocedor1(automata1);
-		}
 		else
-		{
-			automata1= new String[10][3];
+			{
+				automata1= new String[10][3];
 
-			for (int i = 0; i < automata1.length; i++) {
-				for (int j = 0; j < automata1[0].length; j++) {
-					automata1[i][j]=(String)tablaEstados1.getModel().getValueAt(i, j);
-					dataMealy1[i][j]= (String) tablaEstados1.getModel().getValueAt(i, j);
+				for (int i = 0; i < automata1.length && !continua; i++) {
+					for (int j = 0; j < automata1[0].length && !continua; j++) {
+						
+						String value = (String)tablaEstados1.getModel().getValueAt(i, j);
+						if(!value.equals(""))
+							if(j==0)
+								{
+									String aux = (String)tablaEstados1.getModel().getValueAt(i, j+1);
+									if(aux != null )
+										if(!aux.equals(""))
+											automata1[i][j]=value;
+										else
+											JOptionPane.showMessageDialog(null, "Formato de datos incorrecto");
+									else
+										continua = true;
+								}
+							else
+								automata1[i][j]=value;
+						else
+							continua=true;
+						
+						//					dataMealy1[i][j]= (String) tablaEstados1.getModel().getValueAt(i, j);
+					}
 				}
+				ventana.actualizarMeley1(automata1);
 			}
-			ventana.actualizarMeley1(automata1);
-		}
-		
+
 	}
 
 	private void cambiartipoAutomata() {
 		// TODO Auto-generated method stub
 		if(!reconocedor)
-		{
-			reconocedor=true;
-			Object[][] data = new Object[10][4];
-			tablaEstados1.setModel(new DefaultTableModel(dataMealy1, new String[] {
-					"Estado", "a", "b","salida"
-			}));
+			{
+				reconocedor=true;
+				tablaEstados1.setModel(new DefaultTableModel(dataMealy1, new String[] {
+						"Estado", "a", "b","salida"
+				}));
 
-			data = new Object[10][4];
-			tablaEstados2.setModel(new DefaultTableModel(dataMealy2, new String[] {
-					"Estado", "a", "b","salida"
+				tablaEstados2.setModel(new DefaultTableModel(dataMealy2, new String[] {
+						"Estado", "a", "b","salida"
+				}
+						));
 			}
-					));
-		}
 		else
-		{
-			reconocedor=false;
-			Object[][] data = new Object[10][3];
-			tablaEstados1.setModel(new DefaultTableModel(dataMoore1, new String[] {
-					"Estado", "a", "b"
-			}));
+			{
+				reconocedor=false;
+				tablaEstados1.setModel(new DefaultTableModel(dataMoore1, new String[] {
+						"Estado", "a", "b"
+				}));
 
-			data = new Object[10][3];
-			tablaEstados2.setModel(new DefaultTableModel(dataMoore2, new String[] {
-					"Estado", "a", "b"
-			}));
-		}
+				tablaEstados2.setModel(new DefaultTableModel(dataMoore2, new String[] {
+						"Estado", "a", "b"
+				}));
+			}
 	}
 
 }
