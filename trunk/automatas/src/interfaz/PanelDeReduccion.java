@@ -36,7 +36,7 @@ public class PanelDeReduccion extends JPanel implements ActionListener
 
 	private JLabel lblCadena;
 
-	private JComboBox<String> cbAutomatas;
+	private JComboBox/*<String>*/ cbAutomatas;
 
 	public PanelDeReduccion(InterfazWB interfaz) {
 		setPreferredSize(new Dimension(477, 339));
@@ -140,8 +140,8 @@ public class PanelDeReduccion extends JPanel implements ActionListener
 		panel.add(panel_5);
 		panel_5.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		cbAutomatas = new JComboBox<String>();
-		cbAutomatas.setModel(new DefaultComboBoxModel<String>(new String[] {"Automata1", "Automata2"}));
+		cbAutomatas = new JComboBox/*<String>*/();
+		cbAutomatas.setModel(new DefaultComboBoxModel/*<String>*/(new String[] {"Automata1", "Automata2"}));
 		cbAutomatas.setEditable(false);
 		panel_5.add(cbAutomatas);
 

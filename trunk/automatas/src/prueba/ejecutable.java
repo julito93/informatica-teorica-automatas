@@ -91,7 +91,14 @@ public class ejecutable {
 			}
 		}
 		eq.inicializarReonocedor(matriz3, matriz4);
-		System.out.println(eq.algoritmoDeEquivalencia(eq.getAutomata1(), eq.getAutomata2()));
+		try
+			{
+				System.out.println(eq.algoritmoDeEquivalencia(eq.getAutomata1(), eq.getAutomata2()));
+			} catch (Exception e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
 		
 		
