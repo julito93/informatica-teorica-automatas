@@ -77,93 +77,128 @@ public class InterfazWB extends JFrame
 
 	public Object[][] automata1ReducidoMealy()
 		{
-			if(!equivalencia.getAutomata1().getEstados().isEmpty())
-				{
-			Automata automata = equivalencia.conexoYreducido(equivalencia
-					.getAutomata1());
-					Object[][] data = new Object[automata.getEstados().size()][3];
-					for (int i = 0; i < automata.getEstados().size(); i++)
-						{
-							Estado e = automata.getEstados().get(i);
-							data[i][0] = e.getId();
-							data[i][1] = e.getTransicionA().getEstadoLlegada()
-									+ "," + e.getTransicionA().getSalida();
-							data[i][2] = e.getTransicionB().getEstadoLlegada()
-									+ "," + e.getTransicionA().getSalida();
-						}
+			try{
 
-					return data;
+				if(!equivalencia.getAutomata1().getEstados().isEmpty())
+					{
+						Automata automata = equivalencia.conexoYreducido(equivalencia
+								.getAutomata1());
+						Object[][] data = new Object[automata.getEstados().size()][3];
+						for (int i = 0; i < automata.getEstados().size(); i++)
+							{
+								Estado e = automata.getEstados().get(i);
+								data[i][0] = e.getId();
+								data[i][1] = e.getTransicionA().getEstadoLlegada()
+										+ "," + e.getTransicionA().getSalida();
+								data[i][2] = e.getTransicionB().getEstadoLlegada()
+										+ "," + e.getTransicionA().getSalida();
+							}
+
+						return data;
+					}
+				else
+					return new Object[0][0];
+			}
+			catch(Exception e)
+				{
+					JOptionPane.showMessageDialog(this,e.getMessage(), " Estado Invalido" , JOptionPane.ERROR_MESSAGE);
+					return new Object[0][0];
 				}
-			else
-				return new Object[0][0];
 		}
 
 	public Object[][] automata2ReducidoMealy()
 		{
-			if(!equivalencia.getAutomata2().getEstados().isEmpty())
+			try
 				{
-			Automata automata = equivalencia.conexoYreducido(equivalencia
-					.getAutomata2());
-					Object[][] data = new Object[automata.getEstados().size()][3];
-					for (int i = 0; i < automata.getEstados().size(); i++)
+					if(!equivalencia.getAutomata2().getEstados().isEmpty())
 						{
-							Estado e = automata.getEstados().get(i);
-							data[i][0] = e.getId();
-							data[i][1] = e.getTransicionA().getEstadoLlegada()
-									+ "," + e.getTransicionA().getSalida();
-							data[i][2] = e.getTransicionB().getEstadoLlegada()
-									+ "," + e.getTransicionA().getSalida();
-						}
+							Automata automata = equivalencia.conexoYreducido(equivalencia
+									.getAutomata2());
+							Object[][] data = new Object[automata.getEstados().size()][3];
+							for (int i = 0; i < automata.getEstados().size(); i++)
+								{
+									Estado e = automata.getEstados().get(i);
+									data[i][0] = e.getId();
+									data[i][1] = e.getTransicionA().getEstadoLlegada()
+											+ "," + e.getTransicionA().getSalida();
+									data[i][2] = e.getTransicionB().getEstadoLlegada()
+											+ "," + e.getTransicionA().getSalida();
+								}
 
-					return data;
+							return data;
+						}
+					else
+						return new Object[0][0];
 				}
-			else
-				return new Object[0][0];
+			catch(Exception e)
+				{
+					JOptionPane.showMessageDialog(this,e.getMessage(), " Estado Invalido" , JOptionPane.ERROR_MESSAGE);
+					return new Object[0][0];
+				}
+
 		}
 
 	public Object[][] automata1ReducidoMoore()
 		{
-			if(!equivalencia.getAutomata1().getEstados().isEmpty())
+			try
 				{
-					Automata automata = equivalencia.conexoYreducido(equivalencia
-							.getAutomata1());
-					Object[][] data = new Object[automata.getEstados().size()][4];
-					for (int i = 0; i < automata.getEstados().size(); i++)
+					if(!equivalencia.getAutomata1().getEstados().isEmpty())
 						{
-							Estado e = automata.getEstados().get(i);
-							data[i][0] = e.getId();
-							data[i][1] = e.getTransicionA().getEstadoLlegada();
-							data[i][2] = e.getTransicionB().getEstadoLlegada();
-							data[i][3] = e.getTransicionA().getSalida();
-						}
+							Automata automata = equivalencia.conexoYreducido(equivalencia
+									.getAutomata1());
+							Object[][] data = new Object[automata.getEstados().size()][4];
+							for (int i = 0; i < automata.getEstados().size(); i++)
+								{
+									Estado e = automata.getEstados().get(i);
+									data[i][0] = e.getId();
+									data[i][1] = e.getTransicionA().getEstadoLlegada();
+									data[i][2] = e.getTransicionB().getEstadoLlegada();
+									data[i][3] = e.getTransicionA().getSalida();
+								}
 
-					return data;
+							return data;
+						}
+					else
+						return new Object[0][0];
 				}
-			else
-				return new Object[0][0];
+			catch(Exception e)
+				{
+					JOptionPane.showMessageDialog(this,e.getMessage(), " Estado Invalido" , JOptionPane.ERROR_MESSAGE);
+					return new Object[0][0];
+				}
+
 		}
 
 	public Object[][] automata2ReducidoMoore()
 		{
-			if(!equivalencia.getAutomata2().getEstados().isEmpty())
+			try
 				{
-			Automata automata = equivalencia.conexoYreducido(equivalencia
-					.getAutomata2());
-					Object[][] data = new Object[automata.getEstados().size()][4];
-					for (int i = 0; i < automata.getEstados().size(); i++)
+					if(!equivalencia.getAutomata2().getEstados().isEmpty())
 						{
-							Estado e = automata.getEstados().get(i);
-							data[i][0] = e.getId();
-							data[i][1] = e.getTransicionA().getEstadoLlegada();
-							data[i][2] = e.getTransicionB().getEstadoLlegada();
-							data[i][3] = e.getTransicionA().getSalida();
-						}
+							Automata automata = equivalencia.conexoYreducido(equivalencia
+									.getAutomata2());
+							Object[][] data = new Object[automata.getEstados().size()][4];
+							for (int i = 0; i < automata.getEstados().size(); i++)
+								{
+									Estado e = automata.getEstados().get(i);
+									data[i][0] = e.getId();
+									data[i][1] = e.getTransicionA().getEstadoLlegada();
+									data[i][2] = e.getTransicionB().getEstadoLlegada();
+									data[i][3] = e.getTransicionA().getSalida();
+								}
 
-					return data;
+							return data;
+						}
+					else
+						return new Object[0][0];
 				}
-			else
-				return new Object[0][0];
+			catch(Exception e)
+				{
+					JOptionPane.showMessageDialog(this,e.getMessage(), " Estado Invalido" , JOptionPane.ERROR_MESSAGE);
+					return new Object[0][0];
+				}
 		}
+
 
 	public void actualizarReconocedor1(String[][] automata1)
 		{
@@ -312,15 +347,23 @@ public class InterfazWB extends JFrame
 
 	public void equivalencia()
 		{
-			boolean eq = equivalencia.algoritmoDeEquivalencia(
-					equivalencia.getAutomata1(),
-					equivalencia.getAutomata2());
-			if (eq == true)
-				JOptionPane.showMessageDialog(null,
-						"Los automatas no son equivalentes");
-			else
-				JOptionPane.showMessageDialog(null,
-						"Los automatas son equivalentes");
+			try
+				{
+					boolean eq = equivalencia.algoritmoDeEquivalencia(
+							equivalencia.getAutomata1(),
+							equivalencia.getAutomata2());
+					if (eq == true)
+						JOptionPane.showMessageDialog(null,
+								"Los automatas no son equivalentes");
+					else
+						JOptionPane.showMessageDialog(null,
+								"Los automatas son equivalentes");
+				}
+			catch(Exception e)
+				{
+					JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			
 
 		}
 }
