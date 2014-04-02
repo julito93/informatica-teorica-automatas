@@ -102,7 +102,14 @@ public class PanelMatriz extends JPanel implements ActionListener{
 		dataMealy1[8][0] = "I";
 		dataMealy1[9][0] = "J";
 		panelTablas.setLayout(new BoxLayout(panelTablas, BoxLayout.X_AXIS));
-		tablaEstados1.setModel(new DefaultTableModel(dataMealy1,new String[] {"Estado", "a", "b"}));
+		tablaEstados1.setModel(new DefaultTableModel(dataMealy1,new String[] {"Estado", "a", "b"}){
+			boolean[] columnEditables = new boolean[] {
+					false, true, true
+				};
+				public boolean isCellEditable(int row, int column) {
+					return columnEditables[column];
+				}
+			});
 		scrollMatriz.setViewportView(tablaEstados1);
 		panelTablas.add(bloqueMatriz1);
 
@@ -130,7 +137,13 @@ public class PanelMatriz extends JPanel implements ActionListener{
 				new String[] {
 						"Estado", "a", "b"
 		}
-				));
+				){
+					boolean[] columnEditables = new boolean[] {
+							false, true, true
+						};
+						public boolean isCellEditable(int row, int column) {
+							return columnEditables[column];
+						}});
 		scrollMatriz_1.setViewportView(tablaEstados2);
 		panelTablas.add(bloqueMatriz2);
 

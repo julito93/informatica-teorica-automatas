@@ -164,14 +164,26 @@ public class PanelDeReduccion extends JPanel implements ActionListener
 			tablaEstados1.setModel(new DefaultTableModel(data, new String[] {
 					"Estado", "a", "b","salida"
 			}
-					));
+					){
+						boolean[] columnEditables = new boolean[] {
+								false, false, false
+							};
+							public boolean isCellEditable(int row, int column) {
+								return columnEditables[column];
+							}});
 
 
 			data = ventana.automata2ReducidoMoore();
 			tablaEstados2.setModel(new DefaultTableModel(data, new String[] {
 					"Estado", "a", "b","salida"
 			}
-					));
+					){
+						boolean[] columnEditables = new boolean[] {
+								false, false, false
+							};
+							public boolean isCellEditable(int row, int column) {
+								return columnEditables[column];
+							}});
 
 		}
 		else
@@ -180,13 +192,25 @@ public class PanelDeReduccion extends JPanel implements ActionListener
 			tablaEstados1.setModel(new DefaultTableModel(data, new String[] {
 					"Estado", "a", "b"
 			}
-					));
+					){
+						boolean[] columnEditables = new boolean[] {
+								false, false, false
+							};
+							public boolean isCellEditable(int row, int column) {
+								return columnEditables[column];
+							}});
 
 			data = ventana.automata2ReducidoMealy();
 			tablaEstados2.setModel(new DefaultTableModel(data, new String[] {
 					"Estado", "a", "b"
 			}
-					));
+					){
+						boolean[] columnEditables = new boolean[] {
+								false, false, false
+							};
+							public boolean isCellEditable(int row, int column) {
+								return columnEditables[column];
+							}});
 		}
 	}
 
@@ -197,7 +221,13 @@ public class PanelDeReduccion extends JPanel implements ActionListener
 		tablaEstados1.setModel(new DefaultTableModel(data, new String[] {
 				"Estado", "a", "b"
 		}
-				));
+				){
+					boolean[] columnEditables = new boolean[] {
+							false, false, false
+						};
+						public boolean isCellEditable(int row, int column) {
+							return columnEditables[column];
+						}});
 	}
 	
 	public void actualizarPanelMeely2() 
@@ -206,7 +236,13 @@ public class PanelDeReduccion extends JPanel implements ActionListener
 		tablaEstados2.setModel(new DefaultTableModel(data, new String[] {
 				"Estado", "a", "b"
 		}
-				));
+				){
+					boolean[] columnEditables = new boolean[] {
+							false, false, false
+						};
+						public boolean isCellEditable(int row, int column) {
+							return columnEditables[column];
+						}});
 	}
 
 }
